@@ -1,0 +1,7 @@
+{
+  "name": "FerreteriaMobileFrontend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

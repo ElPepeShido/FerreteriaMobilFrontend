@@ -1,0 +1,13 @@
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-img alt="Silhouette of mountains" src="assets/logo.svg" />
+    <ion-input class="mi-input" type="email" fill="solid" label="Email" labelPlacement="floating"
+      helperText="Ingrese su correo" errorText="Correo invalido" ngModel email></ion-input>
+    <ion-input class="mi-input" type="password" fill="solid" label="Contraseña" labelPlacement="floating"
+      helperText="Ingrese su contraseña" errorText="Contraseña no posible" ngModel password></ion-input>
+    <ion-button id="open-toast" class="inicia-sesion">Iniciar Sesión</ion-button>
+    <p>¿No tienes una cuenta?</p>
+    <a href="/create-acount"><ion-button class="crea-cuenta">Crear una cuenta</ion-button></a>
+  </ion-card>
+  <ion-toast trigger="open-toast" message="Correo o contraseña incorrectos" [duration]="2000"></ion-toast>
+</ion-content>
