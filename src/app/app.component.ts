@@ -10,5 +10,7 @@ register();
   standalone: false,
 })
 export class AppComponent {
-  constructor() {}
+  constructor() {
+  }
+  
 }
