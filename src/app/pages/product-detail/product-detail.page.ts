@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { register } from 'swiper/element/bundle';
+import { ActivatedRoute } from '@angular/router';
+import { ProductsService } from 'src/app/services/products.service';
 
 register();
 @Component({
@@ -10,6 +12,8 @@ register();
 })
 export class ProductDetailPage implements OnInit {
 
+  product: any;
+
   slideOpts = {
     initialSlide: 0, // Empieza en la primera imagen
     speed: 400, // Velocidad de transición en ms
@@ -19,7 +23,26 @@ export class ProductDetailPage implements OnInit {
     },
   };
 
-  constructor() {}
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductsService
+  ) {
+    
+  }
   ngOnInit() {
+    const productId = this.route.snapshot.paramMap.get('id');
+    if (productId) {
+      this.loadProduct(productId);
+    }
+  }
+
+  loadProduct(id: string) {
+    this.productService.getProductById(id).subscribe((data) => {
+        this.product = data;
+      },
+      (error) => {
+        console.error('Error al obtener el producto:', error);
+      }
+    );
   }
 }

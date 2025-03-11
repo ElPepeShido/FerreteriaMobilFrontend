@@ -50,50 +50,27 @@
       <ion-title>Nuestros productos</ion-title>
     </ion-toolbar>
   </ion-header>
+
   <ion-content [fullscreen]="true">
+
     <ion-header collapse="condense">
       <ion-toolbar>
         <ion-title size="large">Nuestros productos</ion-title>
       </ion-toolbar>
     </ion-header>
+
     <ion-list>
-      <!-- @for (item of items; track item; let index = $index) {
-          <ion-item class="ion-activatable ripple-parent rectangle">
-            <ion-avatar class="product">
-              <img [src]="'https://picsum.photos/80/80?random='" alt="avatar" />
-            </ion-avatar>
-            <ion-label>
-              <h1>Nombre del producto</h1>
-              <p>Descripción del producto</p>
-              <h2>{{ precio | slice:0:100 }}{{ precio.length > 10 ? '...' : '' }}</h2>
-            </ion-label>
-            <ion-ripple-effect></ion-ripple-effect>
-          </ion-item>
-        } -->
-      <ion-item class="ion-activatable ripple-parent rectangle">
+      <ion-item (click)="goToProductDetail(product.id)" *ngFor="let product of productsList" class="ion-activatable ripple-parent rectangle">
         <ion-avatar class="product">
-          <img [src]="'https://picsum.photos/80/80?random='" alt="avatar" />
+          <img [src]="product.imagen1" alt="producto" />
         </ion-avatar>
         <ion-label>
-          <h1>Nombre del producto</h1>
-          <p>Descripción del producto</p>
-          <h2>$350</h2>
+          <h1>{{product.nombre}}</h1>
+          <p>{{ product.descripcion | slice:0:45 }}{{ product.descripcion.length > 32 ? '...' : '' }}</p>
+          <h2>{{ product.precio | slice:0:100 }}{{ product.precio.length > 10 ? '...' : '' }}</h2>
         </ion-label>
         <ion-ripple-effect></ion-ripple-effect>
       </ion-item>
-
-      <ion-item class="ion-activatable ripple-parent rectangle">
-        <ion-ripple-effect></ion-ripple-effect>
-        <ion-avatar class="product">
-          <img [src]="'https://picsum.photos/80/80?random='" alt="avatar" />
-        </ion-avatar>
-        <ion-label>
-          <h1>Nombre del producto</h1>
-          <p>Descripción del producto</p>
-          <h2>$412</h2>
-        </ion-label>
-      </ion-item>
-
     </ion-list>
     <ion-infinite-scroll>
       <ion-infinite-scroll-content loadingText="Please wait..." loadingSpinner="bubbles"></ion-infinite-scroll-content>

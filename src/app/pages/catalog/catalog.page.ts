@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductsService } from 'src/app/services/products.service';
+import { Router } from '@angular/router';
+
 @Component({
   standalone: false,
   selector: 'app-catalog',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CatalogPage implements OnInit {
 
-  constructor() { }
+  productsList: any[]= [];
+  constructor(private api:ProductsService, private router: Router) { }
 
   ngOnInit() {
+    this.api.getProducts().subscribe((response)=>{
+      console.log(response);
+      this.productsList= (response.productos);
+    })
   }
 
+  goToProductDetail(productId: string) {
+    this.router.navigate(['/product-detail', productId]);
+  }
 }
