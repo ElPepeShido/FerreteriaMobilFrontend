@@ -1,0 +1,108 @@
+<ion-menu contentId="main-content">
+  <ion-header [translucent]="true">
+    <ion-toolbar class="menu-toolbar">
+      <ion-title>Opciones</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <a href="/catalog">
+      <ion-item>
+        <ion-avatar>
+          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-avatar>
+        <label>Mi perfil</label>
+      </ion-item>
+    </a>
+    <a href="/catalog">
+      <ion-item>
+        <ion-icon name="cart-outline"></ion-icon>
+        <label>Carrito</label>
+        <ion-note slot="end">15</ion-note>
+      </ion-item>
+    </a>
+    <a href="/catalog">
+      <ion-item>
+        <ion-icon name="hammer-outline"></ion-icon>
+        <label>Productos</label>
+      </ion-item>
+    </a>
+    <a href="/catalog">
+      <ion-item>
+        <ion-icon name="bag-check-outline"></ion-icon>
+        <label>Mis pedidos</label>
+      </ion-item>
+    </a>
+    <a href="/catalog">
+      <ion-item slot="end">
+        <ion-icon name="log-out-outline"></ion-icon>
+        <label>Cerrar sesión</label>
+      </ion-item>
+    </a>
+  </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Detalles del producto</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true">
+    <ion-card>
+      <swiper-container>
+        <swiper-slide><img class="img-slide" [src]="'https://picsum.photos/80/80?random='" alt="avatar" /></swiper-slide>
+        <swiper-slide><img class="img-slide" [src]="'https://picsum.photos/80/80?random='" alt="avatar" /></swiper-slide>
+        <swiper-slide><img class="img-slide" [src]="'https://picsum.photos/80/80?random='" alt="avatar" /></swiper-slide>
+      </swiper-container>
+    </ion-card>
+
+    <ion-card>
+      <ion-list>
+        <ion-item>
+          <ion-label>Exitencias</ion-label>
+          <ion-button class="button-info" slot="end">
+            <ion-icon name="cube-outline" slot="start"></ion-icon>
+            12
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-label>Categoria</ion-label>
+          <ion-button class="button-info" slot="end">
+            <ion-icon name="bookmark-outline"  slot="start"></ion-icon>
+            Limpieza
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-label>Marca</ion-label>
+          <ion-button class="button-info" slot="end">
+            <ion-icon name="extension-puzzle-outline" slot="start"></ion-icon>
+            Trupper
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+
+    <ion-card class="card-info">
+      <ion-card-header>
+        <ion-card-title>Nombre del producto</ion-card-title>
+        <ion-card-subtitle>$320</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris hendrerit magna mauris, quis lobortis sapien posuere vel. Mauris vestibulum augue sit amet nisl pretium condimentum. Quisque at tempus turpis, ac placerat sem. Maecenas viverra dictum magna, vitae porta est pharetra at. Ut sed nulla eget turpis sagittis volutpat et non lorem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque quis viverra sem. Ut interdum libero elit, volutpat pellentesque sem dignissim eu. Cras auctor ultrices ligula in pretium.
+      </ion-card-content>
+    </ion-card>
+    
+    <ion-card>
+      <ion-button class="button-add" fill="solid">
+        <ion-icon name="cart-outline" slot="start"></ion-icon>
+        Agregar al carrito
+      </ion-button>
+    </ion-card>
+    <ion-toast trigger="open-toast" position="bottom" message="Mensaje de error momentaneo" [duration]="2000"></ion-toast>
+  </ion-content>
+</div>

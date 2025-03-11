@@ -1,10 +1,14 @@
 ion-content {
     display: flex;
     flex-direction: column;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
     height: 100vh;
     --ion-background-color: #333333;
+}
+
+ion-toolbar{
+    text-align: center;
 }
 
 ion-input {
@@ -13,20 +17,18 @@ ion-input {
     width: 320px;
 }
 
-ion-avatar{
+ion-avatar {
     margin-bottom: 20px;
     width: 120px;
     height: 120px;
 }
 
 ion-card {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     padding: 10px;
     width: 340px;
     margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
     --ion-background-color: #ffffff;
     display: flex;
     flex-direction: column;
@@ -37,16 +39,52 @@ ion-button {
     --border-radius: 20px;
 }
 
-.crea-cuenta{
+.crea-cuenta {
     --background: #f77f00;
 }
 
-p{
-    margin: 10px 0 5px 0;
-}
 
-ion-toast{
+ion-toast {
     --background: red;
     --color: #ffffff;
     text-align: center;
+}
+
+.avatar-container {
+    position: relative;
+    display: inline-block;
+}
+
+.fab-over-avatar {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translate(50%, 50%);
+    z-index: 10;
+}
+
+.image-input {
+    display: none;
+}
+
+.custom-file-upload {
+    background: var(--ion-color-primary, #3880ff);
+    color: white;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+}
+
+.custom-file-upload:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
