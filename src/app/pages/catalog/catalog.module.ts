@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CatalogPageRoutingModule } from './catalog-routing.module';
 import { CatalogPage } from './catalog.page';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { AppModule } from 'src/app/app.module';
 
 @NgModule({
   imports: [
@@ -14,6 +16,8 @@ import { CatalogPage } from './catalog.page';
   ],
   declarations: [
     CatalogPage,
-  ]
+    
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CatalogPageModule {}

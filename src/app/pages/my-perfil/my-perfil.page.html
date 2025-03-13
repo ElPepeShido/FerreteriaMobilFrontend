@@ -1,13 +1,149 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>my-perfil</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">my-perfil</ion-title>
+<ion-menu contentId="main-content">
+  <ion-header>
+    <ion-toolbar class="menu-toolbar">
+      <ion-title>Opciones</ion-title>
     </ion-toolbar>
   </ion-header>
-</ion-content>
+  <ion-content>
+    <ion-list>
+      <ion-item href="/my-perfil">
+        <ion-avatar>
+          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-avatar>
+        <ion-label>Mi perfil</ion-label>
+      </ion-item>
+      <ion-item href="/cart">
+        <ion-icon class="icono-menu" name="cart-outline"></ion-icon>
+        <ion-label>Carrito</ion-label>
+        <ion-note slot="end">15</ion-note>
+      </ion-item>
+      <ion-item href="/catalog">
+        <ion-icon class="icono-menu" name="hammer-outline"></ion-icon>
+        <ion-label>Productos</ion-label>
+      </ion-item>
+      <ion-item href="/orders">
+        <ion-icon class="icono-menu" name="bag-check-outline"></ion-icon>
+        <ion-label>Mis pedidos</ion-label>
+      </ion-item>
+      <ion-item href="/logout">
+        <ion-icon class="icono-menu" name="log-out-outline"></ion-icon>
+        <ion-label>Cerrar sesión</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Mi perfil</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">Crear cuenta</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-card>
+      <ion-avatar class="perfil-img">
+        <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+      </ion-avatar>
+      <ion-title>Nombre de usuario</ion-title>
+    </ion-card>
+
+    <ion-card>
+      <ion-title>Estadisticas</ion-title>
+      <ion-list>
+        <ion-item>
+          <ion-label>Compras realizadas</ion-label>
+          <ion-button color="danger" class="button-info" slot="end">
+            <ion-icon name="cube-outline" slot="start"></ion-icon>
+            12
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-label>Productos en el carrito</ion-label>
+          <ion-button color="warning" class="button-info" slot="end">
+            <ion-icon name="cart-outline"  slot="start"></ion-icon>
+            13
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-label>Estado</ion-label>
+          <ion-button color="success" class="button-info" slot="end">
+            <ion-icon name="star-outline" slot="start"></ion-icon>
+            Activo
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+
+    <ion-card>
+      <ion-title>Tu información</ion-title>
+      <ion-list>
+        <ion-item>
+          <ion-label>Nombre:</ion-label>
+          <p>Emiliano</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Email:</ion-label>
+          <p>{{'proemixtrex@gmail.com'}}</p>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Teléfono:</ion-label>
+          <p>3323585507</p>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+
+    <ion-card>
+      <ion-title>Direcciones</ion-title>
+      <ion-list>
+        <ion-item>
+          <ion-label>
+            <h2>Direccion 1</h2>
+            <p>Calle Reforma 123, Col. Centro, Ciudad de México, CDMX, 06000, México</p>
+          </ion-label>
+          <ion-button color="warning" class="button-info" slot="end">
+            <ion-icon name="pencil-sharp" size="large"></ion-icon>
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>Direccion 2</h2>
+            <p>Av. Siempre Viva 742, Springfield, Illinois, 62704, EE.UU.</p>
+          </ion-label>
+          <ion-button color="warning" class="button-info" slot="end">
+            <ion-icon name="pencil-sharp" size="large"></ion-icon>
+          </ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-label>
+            <h2>Direccion 3</h2>
+            <p>Carrer de la Pau 56, 08002 Barcelona, España</p>
+          </ion-label>
+          <ion-button color="warning" class="button-info" slot="end">
+            <ion-icon name="pencil-sharp" size="large"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+
+    <ion-card>
+      <ion-button href="/catalog" class="crea-cuenta grande">Todo bien</ion-button>
+    </ion-card>
+
+    <ion-fab slot="fixed" vertical="top" horizontal="end" [edge]="true">
+      <ion-fab-button color="medium">
+        <ion-icon class="settings-btn" name="settings-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ion-content>

@@ -1,9 +1,8 @@
 :root {
-    --ion-background-color: #ffffff;
-    --ion-text-color: #333333;
-}
-
-.dark-theme {
-    --ion-background-color: #ffffff;
-    --ion-text-color: #333333;
+    --ion-color-gray: #808080;
+    --ion-color-gray-rgb: 128, 128, 128;
+    --ion-color-gray-contrast: #ffffff;
+    --ion-color-gray-contrast-rgb: 255, 255, 255;
+    --ion-color-gray-shade: #737373;
+    --ion-color-gray-tint: #8c8c8c;
 }
