@@ -28,7 +28,7 @@ export class MyPerfilPage implements OnInit {
           this.cliente = response.data[0];
         } else {
           console.warn('No se encontraron datos del cliente');
-          this.cliente = {} as Cliente;  // ← Asegurar que cliente no sea undefined
+          this.cliente = {} as Cliente;  
         }
       
       },
