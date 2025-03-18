@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ClientService } from 'src/app/services/client/client.service';
-import { Cliente } from 'src/app/models/cliente';
+import { UserService } from 'src/app/services/user/user.service';
+import { User } from 'src/app/interfaces/user';
 
 @Component({
   standalone: false,
@@ -9,32 +9,32 @@ import { Cliente } from 'src/app/models/cliente';
   styleUrls: ['./my-perfil.page.scss'],
 })
 export class MyPerfilPage implements OnInit {
-  private crud:ClientService;
-  protected cliente: Cliente = {} as Cliente;
-
-  constructor(crud:ClientService) { 
+  private crud:UserService;
+  protected User: User = {} as User;
+  protected userId:string = localStorage.getItem('user_id') || "";
+  constructor(crud:UserService) { 
     this.crud = crud;
+    
   }
-
+  
   ngOnInit() {
-    this.obtenerCliente();
+    this.getUser();
   }
-  obtenerCliente(){
-    this.crud.obtenerCliente('67d315ca03861b4b0e0be744').subscribe(
-
+  getUser(){
+    this.crud.getAuthenticatedUser().subscribe(
       response => {
-        console.log('Cliente obtenido:', response);
-        if (Array.isArray(response.data) && response.data.length > 0) {
-          this.cliente = response.data[0];
+        console.log('Usuario obtenido:', response);
+        if (Array.isArray(response) && response.length > 0) {
+          this.User = response;
         } else {
-          console.warn('No se encontraron datos del cliente');
-          this.cliente = {} as Cliente;  
+          console.warn('No se encontraron datos del usuario');
+          this.User = {} as User;  
         }
       
       },
       error => {
-        console.error('Error al obtener cliente:', error.error);
-        this.cliente = {} as Cliente; 
+        console.error('Error al obtener usuario:', error.error);
+        this.User = {} as User; 
       }
     );
   }

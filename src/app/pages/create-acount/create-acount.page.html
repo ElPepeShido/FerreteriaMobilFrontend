@@ -22,25 +22,21 @@
       </ion-button>
     </label>
 
-    <ion-input [(ngModel)]="cliente.nombre" name="nombre" class="mi-input" type="text" fill="solid" label="Nombre"
+    <ion-input [(ngModel)]="user.name" name="nombre" class="mi-input" type="text" fill="solid" label="Nombre"
       labelPlacement="floating" helperText="Ingrese su Nombre" errorText="Nombre no válido"></ion-input>
 
-    <ion-input [(ngModel)]="cliente.apellido_paterno" name="apellido_paterno" class="mi-input" type="text" fill="solid"
-      label="Apellido" labelPlacement="floating" helperText="Ingrese su Apellido Paterno"
+    <ion-input [(ngModel)]="user.last_name" name="apellidos" class="mi-input" type="text" fill="solid"
+      label="Apellido" labelPlacement="floating" helperText="Ingrese sus Apellidoss"
       errorText="Correo Apellido"></ion-input>
 
-    <ion-input [(ngModel)]="cliente.apellido_materno" name="apellido_materno" class="mi-input" type="text" fill="solid"
-      label="Apellido" labelPlacement="floating" helperText="Ingrese su Apellido Materno"
-      errorText="Correo Apellido"></ion-input>
-
-    <ion-input [(ngModel)]="cliente.email" name="email" class="mi-input" type="email" fill="solid" label="Email"
+    <ion-input [(ngModel)]="user.email" name="email" class="mi-input" type="email" fill="solid" label="Email"
       labelPlacement="floating" helperText="Ingrese su correo" errorText="Correo invalido"></ion-input>
 
-    <ion-input [(ngModel)]="cliente.password" name="password" class="mi-input" type="password" fill="solid"
+    <ion-input [(ngModel)]="user.password" name="password" class="mi-input" type="password" fill="solid"
       label="Contraseña" labelPlacement="floating" helperText="Ingrese su contraseña"
       errorText="Contraseña no posible"></ion-input>
 
-    <ion-button id="open-toast" class="crea-cuenta" (click)="botonGuardar()">Crear cuenta</ion-button>
+    <!-- <ion-button id="open-toast" class="crea-cuenta" (click)="botonGuardar()">Crear cuenta</ion-button> -->
   </ion-card>
   <ion-toast position="top" message="Mensaje de error momentaneo" [duration]="2000"></ion-toast>
 </ion-content>

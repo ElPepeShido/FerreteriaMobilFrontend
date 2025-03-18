@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from 'src/app/services/products.service';
+import { ProductsService } from 'src/app/services/productos/products.service';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user/user.service';
+import { User } from 'src/app/interfaces/user';
 
 @Component({
   standalone: false,
@@ -9,14 +11,37 @@ import { Router } from '@angular/router';
   styleUrls: ['./catalog.page.scss'],
 })
 export class CatalogPage implements OnInit {
+  private crudUser:UserService;
+  protected user: User[] = {} as User[];
 
-  productsList: any[]= [];
-  constructor(private api:ProductsService, private router: Router) { }
+  protected productsList: any[]= [];
+
+  constructor(private api:ProductsService, private router: Router,crudUser:UserService) { 
+    this.crudUser = crudUser;
+  }
 
   ngOnInit() {
-    this.api.getProducts().subscribe((response)=>{
+   this.getProducts();
+   this.getCurrentUser();
+  }
+
+  getProducts(){
+    this.api.getProducts().subscribe(response => {
       console.log(response);
-      this.productsList= (response.productos);
+      this.productsList = response.PaginationData.data;
+
+    }, err => {
+      console.error(err);
+    });
+  }
+
+  getCurrentUser(){
+    this.crudUser.getAuthenticatedUser().subscribe(response =>{
+      console.log(response);
+      this.user = [response];
+      console.log(this.user);
+    },error=>{
+      console.error(error);
     })
   }
 

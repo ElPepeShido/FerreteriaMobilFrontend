@@ -1,17 +1,13 @@
 export interface User {
-    id: string;
-    name: string;
-    last_name: string;
-    image: string;
-    email: string;
-    phone: string;
-    rfc: string;
-    password: string;
-    role: string;
-    google_id: string;
-}
-
-export interface UserResponse {
-    message: string,
-    users: User[]
+    name: string,
+    last_name: string,
+    email: string,
+    phone: string,
+    rfc: string,
+    role: string,
+    password: string,
+    updated_at: string,
+    created_at: string,
+    image: string,
+    id: string
 }

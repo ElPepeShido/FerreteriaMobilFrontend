@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ClientService } from 'src/app/services/client/client.service';
-import { Cliente } from 'src/app/models/cliente';
+import { UserService } from 'src/app/services/user/user.service';
+import { User } from 'src/app/interfaces/user';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
@@ -12,23 +12,25 @@ import { FormsModule } from '@angular/forms';
 })
 export class CreateAcountPage implements OnInit {
 
-  private crud:ClientService;
+  private crud:UserService;
   private selectedFile: File | null = null; 
   previewUrl: string | ArrayBuffer | null = null; 
 
 
-  cliente:Cliente = {
+  user:User = {
     id:"",
-    nombre: "",
-    apellido_paterno:  "",
-    apellido_materno: "",
+    name: "",
+    last_name:  "",
     email:"",
     password: "",
-    estado: "Activo",
-    red_social: "Facebook",
-    imagen1:"",
+    image:"",
+    phone:"",
+    rfc:"",
+    role:"",
+    updated_at:"",
+    created_at:"",
   }
-  constructor(crud:ClientService, private router:Router) { 
+  constructor(crud:UserService, private router:Router) { 
     this.crud = crud;
   }
 
@@ -48,17 +50,17 @@ export class CreateAcountPage implements OnInit {
     }
   }
   
-  botonGuardar() {
-    console.log('cliente a guardar : ', this.cliente);
-    this.crud.guardar(this.cliente,this.selectedFile!).subscribe(
-      response => {
-        console.log('Cliente guardado con éxito:', response);
-      },
-      error => {
-        console.error('Error al guardar cliente:', error.error);
-      }
-    );
-  }
+  // botonGuardar() {
+  //   console.log('Usuario a guardar : ', this.user);
+  //   this.crud.guardar(this.user,this.selectedFile!).subscribe(
+  //     response => {
+  //       console.log('Cliente guardado con éxito:', response);
+  //     },
+  //     error => {
+  //       console.error('Error al guardar cliente:', error.error);
+  //     }
+  //   );
+  // }
 
 
 

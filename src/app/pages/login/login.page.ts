@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from 'src/app/services/login/login.service';
-import { User } from 'src/app/interfaces/user';
-import { Route } from '@angular/router';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { TokenService } from 'src/app/services/token/token.service';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -11,33 +11,34 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  showToast = false;
-  errorMessage = "";
-  user:User = {
-    id: "",
-    name: "",
-    last_name: "",
-    image: "",
-    email: "",
-    password: "",
-    phone: "",
-    rfc: "",
-    role: "",
-    google_id: "",
+  user = {
+    email: '',
+    password: ''
   };
-  constructor(private loginService: LoginService,) { }  // TODO agregar router 
-  ngOnInit() {
-  }
-  login() {
-    this.loginService.login(this.user).subscribe(
-      (response) => {
-        console.log("User logged in:", response);
+  errors: any;
+
+  constructor(
+    private authService: AuthService,
+    private tokenService: TokenService,
+    private router: Router
+  ) {}
+
+  login(): void {
+    this.cleanErrors();
+    this.authService.login(this.user).subscribe(
+      response => {
+        this.tokenService.setToken(response.token, response.id);
+        this.router.navigateByUrl('/my-perfil');
       },
-      (error) => {
-        this.errorMessage = "Correo o contraseña incorrectos";
-        this.showToast = true;
+      errors => {
+        console.error('Error in login', errors);
       }
     );
   }
-    // TODO: redireccionar al dashboard o al home según el role del usuario logueado.
+
+  private cleanErrors(): void {
+    this.errors = null;
+  }
+
+  ngOnInit() {}
 }

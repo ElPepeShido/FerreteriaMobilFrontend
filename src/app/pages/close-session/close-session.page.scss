@@ -1,0 +1,52 @@
+ion-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    --ion-background-color: #333333;
+}
+
+ion-toolbar{
+    text-align: center;
+}
+
+ion-card {
+    padding: 10px;
+    width: 340px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    --ion-background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+ion-button {
+    --border-radius: 20px;
+}
+
+.salir {
+    --background: red;
+}
+
+.regresar {
+    --background: #15207e;
+}
+
+ion-toolbar{
+    text-align: center;
+    --ion-background-color: #15207e;
+    --color:#eeeeee;
+}
+
+.crea-cuenta {
+    --background: #f77f00;
+}
+
+ion-toast {
+    --background: red;
+    --color: #ffffff;
+    text-align: center;
+}

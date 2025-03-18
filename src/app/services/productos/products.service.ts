@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import {ProductResponse} from 'src/app/interfaces/product'
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
   constructor(private http: HttpClient) { }
-  url="http://127.0.0.1:8000/api/productos";
+
+  protected readonly url ="http://127.0.0.1:8000/api/product";
+
   getProducts():Observable<any>{
-    console.log("getProducts function in the service is already starting!");
-    return this.http.get(this.url)
+    return this.http.get(this.url);
   }
 
-  getProductById(id: string): Observable<any> {
-    return this.http.get<any>(`${this.url}/${id}`);
+  getProductById(id: string): Observable<ProductResponse> {
+    return this.http.get<ProductResponse>(`${this.url}/${id}`);
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { register } from 'swiper/element/bundle';
 import { ActivatedRoute } from '@angular/router';
-import { ProductsService } from 'src/app/services/products.service';
+import { ProductsService } from 'src/app/services/productos/products.service';
 
 register();
 @Component({

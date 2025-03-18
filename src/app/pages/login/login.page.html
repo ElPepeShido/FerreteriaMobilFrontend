@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true">
   <ion-card>
-    <ion-img alt="Silhouette of mountains" src="assets/logo.svg" />
+    <ion-img alt="Logo FerreDevs" src="assets/logo.svg" />
     
     <ion-input [(ngModel)]="user.email" class="mi-input" type="email" fill="solid" label="Email" labelPlacement="floating"
       helperText="Ingrese su correo" errorText="Correo invalido" ngModel email></ion-input>
@@ -10,5 +10,7 @@
     <p>¿No tienes una cuenta?</p>
     <a href="/create-acount"><ion-button class="crea-cuenta">Crear una cuenta</ion-button></a>
   </ion-card>
-  <ion-toast [isOpen]="showToast" [message]="errorMessage" [duration]="2000" (didDismiss)="showToast = false"></ion-toast>
+  <ion-toast  [duration]="2000" *ngIf="errors">
+    Credenciales no válidas
+  </ion-toast>
 </ion-content>
