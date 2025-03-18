@@ -12,23 +12,35 @@
   </ion-header>
   <ion-card>
     <ion-avatar>
-      <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+      <img *ngIf="previewUrl" [src]="previewUrl" alt="Imagen seleccionada" />
     </ion-avatar>
+
     <label class="custom-file-upload">
-      <ion-input class="image-input" type="file"></ion-input>
-      <ion-icon name="add"></ion-icon>
+      <input type="file" (change)="onFileSelected($event)" accept="image/*">
+      <ion-button fill="clear">
+        <ion-icon name="add-circle" size="large"></ion-icon>
+      </ion-button>
     </label>
-    <ion-input class="mi-input" type="text" fill="solid" label="Nombre" labelPlacement="floating"
-      helperText="Ingrese su Nombre" errorText="Nombre no válido" ngModel nombre></ion-input>
-    <ion-input class="mi-input" type="text" fill="solid" label="Apellido" labelPlacement="floating"
-      helperText="Ingrese su Apellido" errorText="Correo Apellido" ngModel apellido></ion-input>
-    <ion-input class="mi-input" type="email" fill="solid" label="Email" labelPlacement="floating"
-      helperText="Ingrese su correo" errorText="Correo invalido" ngModel email></ion-input>
-    <ion-input class="mi-input" type="number" fill="solid" label="Numero" labelPlacement="floating"
-      helperText="Ingrese su numero" errorText="Número inválido" ngModel email></ion-input>
-    <ion-input class="mi-input" type="password" fill="solid" label="Contraseña" labelPlacement="floating"
-      helperText="Ingrese su contraseña" errorText="Contraseña no posible" ngModel password></ion-input>
-    <ion-button id="open-toast" class="crea-cuenta">Crear cuenta</ion-button>
+
+    <ion-input [(ngModel)]="cliente.nombre" name="nombre" class="mi-input" type="text" fill="solid" label="Nombre"
+      labelPlacement="floating" helperText="Ingrese su Nombre" errorText="Nombre no válido"></ion-input>
+
+    <ion-input [(ngModel)]="cliente.apellido_paterno" name="apellido_paterno" class="mi-input" type="text" fill="solid"
+      label="Apellido" labelPlacement="floating" helperText="Ingrese su Apellido Paterno"
+      errorText="Correo Apellido"></ion-input>
+
+    <ion-input [(ngModel)]="cliente.apellido_materno" name="apellido_materno" class="mi-input" type="text" fill="solid"
+      label="Apellido" labelPlacement="floating" helperText="Ingrese su Apellido Materno"
+      errorText="Correo Apellido"></ion-input>
+
+    <ion-input [(ngModel)]="cliente.email" name="email" class="mi-input" type="email" fill="solid" label="Email"
+      labelPlacement="floating" helperText="Ingrese su correo" errorText="Correo invalido"></ion-input>
+
+    <ion-input [(ngModel)]="cliente.password" name="password" class="mi-input" type="password" fill="solid"
+      label="Contraseña" labelPlacement="floating" helperText="Ingrese su contraseña"
+      errorText="Contraseña no posible"></ion-input>
+
+    <ion-button id="open-toast" class="crea-cuenta" (click)="botonGuardar()">Crear cuenta</ion-button>
   </ion-card>
   <ion-toast position="top" message="Mensaje de error momentaneo" [duration]="2000"></ion-toast>
 </ion-content>
