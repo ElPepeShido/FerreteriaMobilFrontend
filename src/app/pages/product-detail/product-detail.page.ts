@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { register } from 'swiper/element/bundle';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from 'src/app/services/productos/products.service';
+import { Product } from 'src/app/interfaces/product';
 
 register();
 @Component({
@@ -12,7 +13,8 @@ register();
 })
 export class ProductDetailPage implements OnInit {
 
-  product: any;
+  product: Product = {} as Product;
+  
 
   slideOpts = {
     initialSlide: 0, // Empieza en la primera imagen
@@ -30,7 +32,7 @@ export class ProductDetailPage implements OnInit {
     
   }
   ngOnInit() {
-    const productId = this.route.snapshot.paramMap.get('id');
+    const productId = localStorage.getItem('product_id');
     if (productId) {
       this.loadProduct(productId);
     }
@@ -38,6 +40,7 @@ export class ProductDetailPage implements OnInit {
 
   loadProduct(id: string) {
     this.productService.getProductById(id).subscribe((data) => {
+      console.log('Producto:', data);
         this.product = data;
       },
       (error) => {

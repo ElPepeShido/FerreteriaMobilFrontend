@@ -3,6 +3,7 @@ import { ProductsService } from 'src/app/services/productos/products.service';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
 import { User } from 'src/app/interfaces/user';
+import { Product } from 'src/app/interfaces/product';
 
 @Component({
   standalone: false,
@@ -11,25 +12,28 @@ import { User } from 'src/app/interfaces/user';
   styleUrls: ['./catalog.page.scss'],
 })
 export class CatalogPage implements OnInit {
-  private crudUser:UserService;
-  protected user: User[] = {} as User[];
 
-  protected productsList: any[]= [];
+  protected user: User = {} as User;
 
-  constructor(private api:ProductsService, private router: Router,crudUser:UserService) { 
+  protected productsList: Product[]= [];
+
+  constructor(private api:ProductsService, private router: Router,private crudUser:UserService) { 
     this.crudUser = crudUser;
   }
 
   ngOnInit() {
    this.getProducts();
-   this.getCurrentUser();
+   //this.getCurrentUser();
   }
 
   getProducts(){
     this.api.getProducts().subscribe(response => {
-      console.log(response);
-      this.productsList = response.PaginationData.data;
-
+      if (response?.data?.data) {
+        this.productsList = response.data.data;
+      } else {
+        console.error("La estructura de la respuesta no es la esperada");
+        this.productsList = [];
+      }
     }, err => {
       console.error(err);
     });
@@ -38,7 +42,7 @@ export class CatalogPage implements OnInit {
   getCurrentUser(){
     this.crudUser.getAuthenticatedUser().subscribe(response =>{
       console.log(response);
-      this.user = [response];
+      this.user = response;
       console.log(this.user);
     },error=>{
       console.error(error);
@@ -46,6 +50,7 @@ export class CatalogPage implements OnInit {
   }
 
   goToProductDetail(productId: string) {
+    localStorage.setItem('product_id', productId);
     this.router.navigate(['/product-detail', productId]);
   }
 }
