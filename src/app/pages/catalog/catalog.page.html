@@ -52,15 +52,16 @@
     </ion-header>
 
     <ion-list >
-      <ion-item (click)="goToProductDetail(product.id)" *ngFor="let product of productsList" class="ion-activatable ripple-parent rectangle">
+      <ion-item *ngFor="let product of productsList" class="ion-activatable ripple-parent rectangle">
         <ion-avatar class="product">
-          <img [src]="product.imagen1" alt="producto" />
+          <img [src]="product?.image?.length ? product.image[0] : 'assets/images/empty-image.png'" alt="producto" />
         </ion-avatar>
         <ion-label>
           <h1>{{product.name}}</h1>
-          <p>{{ product.description | slice:0:45 }}{{ product.description.length > 32 ? '...' : '' }}</p>
-          <h2>${{ product.sell_price | slice:0:100 }}{{ product.sell_price.length > 10 ? '...' : '' }} MXN</h2>
+          <p>{{product.description ? (product.description | slice:0:45) + '...' : 'Sin descripción' }}</p>
+          <h2>  ${{ product.sell_price ? (product.sell_price | slice:0:100) : '0.0' }} MXN</h2>
         </ion-label>
+        <ion-icon (click)="goToProductDetail(product.id)" name="chevron-forward-outline" slot="end"></ion-icon>
         <ion-ripple-effect></ion-ripple-effect>
       </ion-item>
     </ion-list>
