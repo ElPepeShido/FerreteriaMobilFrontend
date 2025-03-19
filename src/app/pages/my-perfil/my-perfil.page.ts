@@ -20,17 +20,18 @@ export class MyPerfilPage implements OnInit {
   ngOnInit() {
     this.getUser();
   }
-  getUser(){
+  getUser() {
     this.crud.getAuthenticatedUser().subscribe(
       response => {
         console.log('Usuario obtenido:', response);
-        if (Array.isArray(response) && response.length > 0) {
+        
+        if (response && typeof response === 'object' && Object.keys(response).length > 0) {
           this.User = response;
         } else {
           console.warn('No se encontraron datos del usuario');
           this.User = {} as User;  
         }
-      
+  
       },
       error => {
         console.error('Error al obtener usuario:', error.error);

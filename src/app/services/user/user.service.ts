@@ -33,13 +33,11 @@ export class UserService {
     return this.http.get<User>(`${this.url}/user/${id}`);
   }
 
+  // Método para obtener al usuario autentificado
   getAuthenticatedUser(): Observable<User> {
-    const token = localStorage.getItem('token');
+    // Obtenemos el id del localStorage
     const UserID = localStorage.getItem('user_id');
-    console.log('User ID:', UserID);
-    console.log('Token:', token);
-    
-    return this.http.get<User>(`${this.url}/user/${UserID}`);
+    // Hacemos la petición a la API para obterner el id del usuario autentificado.
+    return this.http.get<User>(`${this.url}/user/${UserID}`); 
   }
- 
 }
