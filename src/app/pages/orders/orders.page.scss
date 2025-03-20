@@ -7,7 +7,15 @@ ion-toolbar{
 ion-card{
     width: 100%;
     margin: 0;
-    margin-top: 10px;
+    margin: 10px 0;
+    --background: #333333;
+    --color: #eeeeee;
+}
+
+ion-card-title,
+ion-card-subtitle{
+    --color: #eeeeee;
+
 }
 
 ion-content{

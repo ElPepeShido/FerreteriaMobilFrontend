@@ -41,13 +41,20 @@ const routes: Routes = [
   },
   {
     path: 'orders',
-    loadChildren: () => import('./pages/orders/orders.module').then( m => m.OrdersPageModule)
+    loadChildren: () => import('./pages/orders/orders.module').then( m => m.OrdersPageModule),
+    canActivate: [isUserAuthenticatedGuard]
   },
   {
     path: 'buy',
     loadChildren: () => import('./pages/buy/buy.module').then( m => m.BuyPageModule),
     canActivate: [isUserAuthenticatedGuard]
   },
+  {
+    path: 'order-detail',
+    loadChildren: () => import('./pages/order-detail/order-detail.module').then( m => m.OrderDetailPageModule),
+    canActivate: [isUserAuthenticatedGuard]
+  },
+
 
 
 

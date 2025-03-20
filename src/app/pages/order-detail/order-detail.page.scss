@@ -59,16 +59,17 @@ ion-icon {
 
 .principal-card{
     margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    // justify-content: center;
 }
 
 ion-card-title{
     font-weight: 700;
     font-size: 30px;
     margin: auto;
+    
 }
 
 ion-card-subtitle{
@@ -102,4 +103,8 @@ ion-card-subtitle{
 
 ion-select{
     margin-bottom: 20px;
+}
+
+.separado{
+    margin-left: 10px;
 }
