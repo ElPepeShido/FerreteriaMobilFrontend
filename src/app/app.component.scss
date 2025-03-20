@@ -1,0 +1,91 @@
+ion-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    --ion-background-color: #ffffff;
+}
+
+ion-toolbar{
+    text-align: center;
+}
+
+ion-input {
+    margin: auto;
+    margin-bottom: 20px;
+    width: 320px;
+}
+
+.perfil-img {
+    margin-bottom: 20px;
+    width: 120px;
+    height: 120px;
+}
+
+ion-card {
+    padding: 10px;
+    width: 340px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    --ion-background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+ion-toast {
+    --background: red;
+    --color: #ffffff;
+    text-align: center;
+}
+
+ion-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    --ion-background-color: #ffffff;
+}
+
+ion-toolbar{
+    text-align: center;
+    --ion-background-color: #15207e;
+    --color:#eeeeee;
+}
+
+ion-button.grande{
+    width: 80%;
+    --ion-background:#eeeeee;
+    --border-radius: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ion-item{
+    margin-left: 0;
+}
+
+.product{
+    width: 100px;
+    height: 100px;
+}
+
+.icono-menu,
+.avatar-menu{
+    margin-right: 10px;
+}
+
+.menu-toolbar{
+    --ion-background-color: #f77f00;
+}
+
+.menu-toolbar ion-title
+{
+    --color:#333333;
+}
