@@ -62,7 +62,11 @@ ion-slide img {
 .img-slide {
     width: 100%;
 }
-
+swiper-container {
+    width: 95%;
+    margin: 20px auto; 
+    display: block;  
+}
 ion-card {
     width: 350px;
     margin: auto;
@@ -92,7 +96,11 @@ ion-card {
 
 .button-add{
     --background:#f77f00;
-    width: 100%;
+    width: 95%;
+    margin: 20px ;
+    margin: 20px auto;  
+    display: block;      
+    text-align: center;
 }
 
 .card-info{
