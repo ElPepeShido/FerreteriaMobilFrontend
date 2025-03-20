@@ -22,8 +22,7 @@ export class CatalogPage implements OnInit {
   }
 
   ngOnInit() {
-   this.getProducts();
-   //this.getCurrentUser();
+    this.getProducts();
   }
 
   getProducts(){

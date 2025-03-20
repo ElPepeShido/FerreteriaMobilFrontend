@@ -39,7 +39,7 @@
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title>Nuestros productos</ion-title>
+      <ion-title>Mi carrito</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -47,24 +47,51 @@
 
     <ion-header collapse="condense">
       <ion-toolbar>
-        <ion-title size="large">Nuestros productos</ion-title>
+        <ion-title size="large">Mi carrito</ion-title>
       </ion-toolbar>
     </ion-header>
 
-    <ion-list >
-      <ion-item *ngFor="let product of productsList" class="ion-activatable ripple-parent rectangle">
-        <ion-avatar class="product">
-          <img [src]="product?.image?.length ? product.image[0] : 'assets/images/empty-image.png'" alt="producto" />
-        </ion-avatar>
-        <ion-label>
-          <h1>{{product.name}}</h1>
-          <p>{{product.description ? (product.description | slice:0:45) + '...' : 'Sin descripción' }}</p>
-          <h2>${{product.sell_price}} MXN</h2>
-        </ion-label>
-        <ion-icon (click)="goToProductDetail(product.id)" name="chevron-forward-outline" slot="end"></ion-icon>
-        <ion-ripple-effect></ion-ripple-effect>
-      </ion-item>
-    </ion-list>
+    <ion-card class="principal-card">
+      <ion-card-header>
+        <ion-card-title>Total: $  MXN</ion-card-title>
+        <ion-card-subtitle>Mi carrito</ion-card-subtitle>
+      </ion-card-header>
+    
+      <ion-card-content>
+        ¿Quieres comprar ahora? puededes hacerlo con PayPal
+      </ion-card-content>
+    
+      <ion-button class="pagar" fill="solid">
+        <ion-icon name="logo-paypal"></ion-icon>
+        Pagar con PayPal</ion-button>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Lista de productos</ion-card-title>
+        <ion-card-subtitle>Productos en el carrito</ion-card-subtitle>
+      </ion-card-header>
+      <ion-list >
+        <ion-item  class="ion-activatable ripple-parent rectangle"> <!--TODO Agregar el *ngFOR -->
+          <ion-avatar class="product">
+            <img [src]="" alt="producto" />
+          </ion-avatar>
+          <ion-label>
+            <h1>Nombre</h1>
+            <p>Descripción</p> <!--TODO Agregar el slice que puse en el otro-->
+            <h2 class="precio">Precio</h2>
+            <h2>Cantidad: </h2>
+            <h2>Existencias: </h2>
+          </ion-label>
+          <ion-card class="cantidades">
+            <ion-button class="add" fill="solid"><ion-icon name="add-outline"></ion-icon></ion-button>
+            <h2>2</h2>
+            <ion-button class="quit" fill="solid"><ion-icon name="remove-outline"></ion-icon></ion-button>
+          </ion-card>
+          <ion-ripple-effect></ion-ripple-effect>
+        </ion-item>
+      </ion-list>
+    </ion-card>
     <ion-infinite-scroll>
       <ion-infinite-scroll-content loadingText="Please wait..." loadingSpinner="bubbles"></ion-infinite-scroll-content>
     </ion-infinite-scroll>

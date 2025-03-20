@@ -34,6 +34,16 @@ const routes: Routes = [
     loadChildren: () => import('./pages/close-session/close-session.module').then( m => m.CloseSessionPageModule),
     canActivate: [isUserAuthenticatedGuard]
   },
+  {
+    path: 'cart',
+    loadChildren: () => import('./pages/cart/cart.module').then( m => m.CartPageModule),
+    canActivate: [isUserAuthenticatedGuard]
+  },  {
+    path: 'orders',
+    loadChildren: () => import('./pages/orders/orders.module').then( m => m.OrdersPageModule)
+  },
+
+
 
   
    //{path:'**', component:NoFoundComponent}

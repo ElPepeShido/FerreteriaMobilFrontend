@@ -1,4 +1,4 @@
-<ion-menu contentId="main-content" menuId="main-menu">
+<ion-menu contentId="productdetail-content" menuId="main-menu">
   <ion-header [translucent]="true">
     <ion-toolbar class="menu-toolbar">
       <ion-title>Opciones</ion-title>
@@ -41,7 +41,7 @@
   </ion-content>
 </ion-menu>
 
-<div class="ion-page">
+<div id="productdetail-content" class="ion-page">
   <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
@@ -61,19 +61,18 @@
 
     <ion-card>
       <swiper-container  *ngIf="product?.image?.length">
+
         <swiper-slide *ngFor="let img of product.image">
           <img class="img-slide" [src]="img" alt="avatar" />
         </swiper-slide>
         <swiper-slide *ngIf="!product?.image?.length">
           <img class="img-slide" src="assets/images/empty-image.png" alt="avatar" />
         </swiper-slide>
+        <swiper-slide *ngIf="!product?.image?.length">
+          <img class="img-slide" src="assets/images/empty-image.png" alt="avatar" />
+        </swiper-slide>
       </swiper-container>
-      <swiper-slide *ngIf="!product?.image?.length">
-        <img class="img-slide" src="assets/images/empty-image.png" alt="avatar" />
-      </swiper-slide>
-
     </ion-card>
-
     <ion-card>
       <ion-list>
         <ion-item>
@@ -83,18 +82,20 @@
             {{product.stock}}
           </ion-button>
         </ion-item>
-        <ion-item>
+        
+        <ion-item *ngIf="product && product.category">
           <ion-label>Categoria</ion-label>
           <ion-button class="button-info" slot="end">
-            <ion-icon name="bookmark-outline"  slot="start"></ion-icon>
-            {{product.category.name}}
+            <ion-icon name="bookmark-outline" slot="start"></ion-icon>
+            {{ product.category.name }}
           </ion-button>
         </ion-item>
-        <ion-item>
+        
+        <ion-item *ngIf="product && product.brand">
           <ion-label>Marca</ion-label>
           <ion-button class="button-info" slot="end">
             <ion-icon name="extension-puzzle-outline" slot="start"></ion-icon>
-            {{product.brand.name}}
+            {{ product.brand.name }}
           </ion-button>
         </ion-item>
       </ion-list>
@@ -103,7 +104,7 @@
     <ion-card class="card-info">
       <ion-card-header>
         <ion-card-title>{{product.name}}</ion-card-title>
-        <ion-card-subtitle>${{product.sell_price}}</ion-card-subtitle>
+        <ion-card-subtitle>${{product.sell_price}} MXN</ion-card-subtitle>
       </ion-card-header>
 
       <ion-card-content>
