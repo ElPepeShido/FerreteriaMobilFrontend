@@ -1,0 +1,107 @@
+ion-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    --ion-background-color: #ffffff;
+    // padding: 10px;
+}
+
+ion-toolbar{
+    text-align: center;
+    --ion-background-color: #15207e;
+    --color:#eeeeee;
+}
+
+ion-avatar {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.precio{
+    color: #2ecc71 ;
+    font-weight: 700;
+}
+
+ion-button{
+    width: 80%;
+    --ion-background:#eeeeee;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ion-item{
+    margin-left: 0;
+}
+
+.product{
+    width: 100px;
+    height: 100px;
+}
+
+ion-icon {
+    margin-right: 10px;
+}
+
+.menu-toolbar{
+    --ion-background-color: #f77f00;
+}
+
+.menu-toolbar ion-title
+{
+    --color:#333333;
+}
+
+.principal-card{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+ion-card-title{
+    color: #2ecc71;
+    font-weight: 700;
+    font-size: 30px;
+    margin: auto;
+    
+}
+
+ion-card-subtitle{
+    margin: auto;
+}
+
+.pagar{
+    --background: #003087;
+    width: 250px;
+    margin-bottom: 20px;
+}
+
+.cantidades{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cantidades h2{
+    margin: auto;
+}
+
+.add{
+    --background: #799163;
+}
+
+.quit{
+    --background: #AB3131;
+}
+
+ion-select{
+    margin-bottom: 20px;
+}

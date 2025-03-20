@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: false,
@@ -8,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartPage implements OnInit {
 
-  constructor() { }
+  constructor(private Router: Router) { }
 
   ngOnInit() {
   }
 
+  goToPay(){
+    this.Router.navigate(['/buy']);  // Navigate to payment page
+  }
 }
