@@ -16,7 +16,7 @@ export interface Link {
     
     export  interface Product {
       name: string;
-      sell_price: string | null;
+      retail_price: string | null;
       buy_price: string;
       bar_code: string;
       stock: number;

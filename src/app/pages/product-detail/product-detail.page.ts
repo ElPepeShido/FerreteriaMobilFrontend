@@ -3,6 +3,8 @@ import { register } from 'swiper/element/bundle';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from 'src/app/services/productos/products.service';
 import { Product } from 'src/app/interfaces/product';
+import { CartService } from 'src/app/services/cart/cart.service';
+import { ToastController } from '@ionic/angular';
 
 register();
 @Component({
@@ -13,8 +15,9 @@ register();
 })
 export class ProductDetailPage implements OnInit {
 
-  product: Product = {} as Product;
-  
+  protected product: Product = {} as Product;
+  protected message: string = '';
+
 
   slideOpts = {
     initialSlide: 0, // Empieza en la primera imagen
@@ -27,9 +30,11 @@ export class ProductDetailPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductsService
+    private productService: ProductsService,
+    private crudCart: CartService,
+    private toastController: ToastController,
   ) {
-    
+
   }
   ngOnInit() {
     const productId = localStorage.getItem('product_id');
@@ -38,14 +43,44 @@ export class ProductDetailPage implements OnInit {
     }
   }
 
-  loadProduct(id: string) {
+  protected loadProduct(id: string) {
     this.productService.getProductById(id).subscribe((data) => {
       console.log('Producto:', data);
-        this.product = data;
-      },
+      this.product = data;
+    },
       (error) => {
         console.error('Error al obtener el producto:', error);
       }
     );
   }
+
+  protected sendToCart(productId: string) {
+    const usrid = `${localStorage.getItem('user_id')}`;
+    this.crudCart.addToCart(productId, usrid).subscribe({
+      next: async (response) => {
+        if (response.message) {  // Suponiendo que la API devuelve un campo 'success'
+          this.showToast('Producto agregado al carrito con éxito', 'success');
+        }
+      },
+      error: async (error) => {
+        console.error(error);
+        this.showToast('Error al agregar al carrito', 'danger');
+      },
+      complete: () => {
+        console.log('La acción se completó correctamente');
+      }
+    });
+  }
+
+  private async showToast(message: string, color: string) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000,  
+      position: 'top', // Puede ser 'top', 'middle' o 'bottom'
+      color
+    });
+    await toast.present();
+  }
+
+
 }

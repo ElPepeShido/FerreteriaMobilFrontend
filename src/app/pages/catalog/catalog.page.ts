@@ -23,12 +23,14 @@ export class CatalogPage implements OnInit {
 
   ngOnInit() {
     this.getProducts();
+    
   }
 
   getProducts(){
     this.api.getProducts().subscribe(response => {
       if (response?.data?.data) {
-        this.productsList = response.data.data;
+        this.productsList = response.data.data;      
+        console.log(this.productsList);
       } else {
         console.error("La estructura de la respuesta no es la esperada");
         this.productsList = [];
@@ -51,5 +53,6 @@ export class CatalogPage implements OnInit {
   goToProductDetail(productId: string) {
     localStorage.setItem('product_id', productId);
     this.router.navigate(['/product-detail', productId]);
-  }
+  }  
+  
 }

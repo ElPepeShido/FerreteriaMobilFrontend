@@ -28,7 +28,7 @@ export class LoginPage implements OnInit {
     this.authService.login(this.user).subscribe(
       response => {
         this.tokenService.setToken(response.token, response.User.id);
-        this.router.navigateByUrl('/my-perfil');
+        this.router.navigateByUrl('/catalog');
       },
       errors => {
         console.error('Error in login', errors);
