@@ -16,3 +16,7 @@ export interface CartProduct{
       id: string;
 }
 
+export interface ProductDeleteResponse{
+      status:string;
+      message: string;
+}

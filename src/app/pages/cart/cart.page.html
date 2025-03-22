@@ -36,7 +36,8 @@
         <ion-card-subtitle>Productos en el carrito</ion-card-subtitle>
       </ion-card-header>
       <ion-list >
-        <ion-item *ngFor="let producto of cart.producto_cart" class="ion-activatable ripple-parent rectangle"> <!--TODO Agregar el *ngFOR -->
+        <ion-item-sliding *ngFor="let producto of cart.producto_cart">
+        <ion-item  class="ion-activatable ripple-parent rectangle"> <!--TODO Agregar el *ngFOR -->
           <ion-avatar class="product">
             <img src="assets/images/empty-image.jpeg" alt="producto" />
           </ion-avatar>
@@ -54,6 +55,14 @@
           </ion-card>
           <ion-ripple-effect></ion-ripple-effect>
         </ion-item>
+
+        <ion-item-options side="end">
+          <ion-button (click)="deleteProduct(producto.producto?.id || '0')">
+            <ion-icon name="trash-outline"></ion-icon>
+          </ion-button>
+        </ion-item-options>
+        
+      </ion-item-sliding>
       </ion-list>
     </ion-card>
     <ion-infinite-scroll>

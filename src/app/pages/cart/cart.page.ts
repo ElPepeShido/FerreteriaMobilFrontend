@@ -81,6 +81,28 @@ export class CartPage implements OnInit {
     });
 
   }
+
+  protected deleteProduct(id:string){
+    const userId = `${localStorage.getItem('user_id')}`;
+    
+    const cartproduct = {
+      client_id: userId,
+      id: id
+    };
+    this.apicart.deleteProduct(cartproduct).subscribe({
+      next: (response) => {
+        console.log('Producto eliminado.:', response);
+        this.getUserCart();
+      },
+      error: (error) => {
+        console.error('Error al eliminar el  producto del carrito:', error);
+      },
+      complete: () => {
+        console.log('La acción se completó correctamente');
+      }
+    });
+
+  }
   
   
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CartAddResponse, CartProduct } from 'src/app/interfaces/cart';
+import { CartAddResponse, CartProduct, ProductDeleteResponse } from 'src/app/interfaces/cart';
 import { CartResponse } from 'src/app/interfaces/cartResponse';
 import { environment } from "src/environments/environment";
 
@@ -33,5 +33,10 @@ export class CartService {
 
   public decrementOne(cartproduct:CartProduct):Observable<CartAddResponse>{
     return this.http.put<CartAddResponse>(`${this.baseUrl}/cart/${cartproduct.id}/less`,{client_id:cartproduct.client_id});
+  }
+
+  public deleteProduct(cartproduct:CartProduct):Observable<ProductDeleteResponse>{
+    return this.http.delete<ProductDeleteResponse>(`${this.baseUrl}/cart/${cartproduct.id}`,{ 
+      body: { client_id: cartproduct.client_id } });
   }
 }
