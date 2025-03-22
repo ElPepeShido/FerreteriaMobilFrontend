@@ -25,7 +25,6 @@ export class CartPage implements OnInit {
 
   getUserCart(){
     const userId = `${localStorage.getItem('user_id')}`;
-    console.log("id usuario :" + userId);
     this.apicart.getUserCart(userId).subscribe({
       next: (response) => {
         console.log('Carrito del usuario:', response);

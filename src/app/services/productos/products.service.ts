@@ -13,7 +13,7 @@ export class ProductsService {
   protected readonly url = environment.apiUrl;
 
   getProducts():Observable<any>{
-    return this.http.get(this.url);
+    return this.http.get(`${this.url}/product`);
   }
 
   getProductById(id: string): Observable<Product> {

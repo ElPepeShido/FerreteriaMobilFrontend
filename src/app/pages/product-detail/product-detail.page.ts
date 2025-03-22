@@ -33,9 +33,7 @@ export class ProductDetailPage implements OnInit {
     private productService: ProductsService,
     private crudCart: CartService,
     private toastController: ToastController,
-  ) {
-
-  }
+  ) {}
   ngOnInit() {
     const productId = localStorage.getItem('product_id');
     if (productId) {
@@ -44,14 +42,22 @@ export class ProductDetailPage implements OnInit {
   }
 
   protected loadProduct(id: string) {
-    this.productService.getProductById(id).subscribe((data) => {
-      console.log('Producto:', data);
-      this.product = data;
-    },
-      (error) => {
-        console.error('Error al obtener el producto:', error);
+    this.productService.getProductById(id).subscribe({
+      next:async  (response) => {
+        if (response) {
+          this.product = response;
+        } else {
+          this.message = 'Producto no encontrado';
+        }
+      },
+      error:async (error) => {
+        console.error(error);
+        this.message = 'Error al cargar el producto';
+      },
+      complete:async () => {
+        console.log('La acción se completó correctamente');
       }
-    );
+    });
   }
 
   protected sendToCart(productId: string) {

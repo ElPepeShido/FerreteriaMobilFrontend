@@ -23,4 +23,8 @@ export class CartService {
   public getUserCart(userId:string):Observable<CartResponse>{
     return this.http.get<CartResponse>(`${this.baseUrl}/cart/${userId}`);
   }
+
+  public increment(){
+    
+  }
 }
