@@ -17,7 +17,10 @@ export class CartService {
 
 
   public addToCart(cartproduct:CartProduct): Observable<CartAddResponse> {
-    return this.http.post<CartAddResponse>(`${this.baseUrl}/cart/add`,cartproduct);
+    return this.http.post<CartAddResponse>(`${this.baseUrl}/cart/add`,{
+      client_id: cartproduct.client_id,
+      id: cartproduct.id
+    });
   }
 
   public getUserCart(userId:string):Observable<CartResponse>{
@@ -25,6 +28,10 @@ export class CartService {
   }
 
   public incrementOne(cartproduct:CartProduct):Observable<CartAddResponse>{
-    return this.http.put<CartAddResponse>(`${this.baseUrl}/cart/${cartproduct.id}/more`,cartproduct.client_id);
+    return this.http.put<CartAddResponse>(`${this.baseUrl}/cart/${cartproduct.id}/more`,{client_id:cartproduct.client_id});
+  }
+
+  public decrementOne(cartproduct:CartProduct):Observable<CartAddResponse>{
+    return this.http.put<CartAddResponse>(`${this.baseUrl}/cart/${cartproduct.id}/less`,{client_id:cartproduct.client_id});
   }
 }

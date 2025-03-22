@@ -50,7 +50,7 @@
           <ion-card class="cantidades">
             <ion-button (click)="incrementOne(producto.producto?.id || '0')" class="add" fill="solid"><ion-icon name="add-outline"></ion-icon></ion-button>
             <h2>{{producto.quantity}}</h2>
-            <ion-button class="quit" fill="solid"><ion-icon name="remove-outline"></ion-icon></ion-button>
+            <ion-button class="quit" (click)="decrementOne(producto.producto?.id || '0')" fill="solid"><ion-icon name="remove-outline"></ion-icon></ion-button>
           </ion-card>
           <ion-ripple-effect></ion-ripple-effect>
         </ion-item>

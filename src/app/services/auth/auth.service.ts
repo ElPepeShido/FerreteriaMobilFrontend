@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { UserRegister } from 'src/app/interfaces/user-register';
 import { AuthCredentials } from 'src/app/interfaces/auth-credentials';
 import { environment } from "src/environments/environment";
+import { TokenService } from '../token/token.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthService {
 
    private readonly url = environment.apiUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private tokenService:TokenService) { }
 
   login(credentials: AuthCredentials): Observable<any> {
     return this.http.post(`${this.url}/login`, credentials);
@@ -23,7 +24,6 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    localStorage.removeItem('user_id');
-    return this.http.post(`${this.url}/logout`, {});
+    return this.http.post(`${this.url}/logout`,{});
   }
 }

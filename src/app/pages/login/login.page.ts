@@ -28,6 +28,7 @@ export class LoginPage implements OnInit {
     this.authService.login(this.user).subscribe(
       response => {
         this.tokenService.setToken(response.token, response.User.id);
+        console.log('id registrado desde Login: ' + `${this.tokenService.getId()}`);
         this.router.navigateByUrl('/catalog');
       },
       errors => {

@@ -40,12 +40,34 @@ export class CartPage implements OnInit {
   }
   protected incrementOne(id:string){
     const userId = `${localStorage.getItem('user_id')}`;
-    console.log('id del cliente: ' + id);
+
     const cartproduct = {
       client_id: userId,
       id: id
     };
     this.apicart.incrementOne(cartproduct).subscribe({
+      next: (response) => {
+        console.log('Producto agregado al carrito:', response);
+        this.getUserCart();
+      },
+      error: (error) => {
+        console.error('Error al agregar producto al carrito:', error);
+      },
+      complete: () => {
+        console.log('La acción se completó correctamente');
+      }
+    });
+
+  }
+
+  protected decrementOne(id:string){
+    const userId = `${localStorage.getItem('user_id')}`;
+    
+    const cartproduct = {
+      client_id: userId,
+      id: id
+    };
+    this.apicart.decrementOne(cartproduct).subscribe({
       next: (response) => {
         console.log('Producto agregado al carrito:', response);
         this.getUserCart();
