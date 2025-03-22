@@ -24,7 +24,7 @@ export class CartService {
     return this.http.get<CartResponse>(`${this.baseUrl}/cart/${userId}`);
   }
 
-  public increment(){
-    
+  public incrementOne(cartproduct:CartProduct):Observable<CartAddResponse>{
+    return this.http.put<CartAddResponse>(`${this.baseUrl}/cart/${cartproduct.id}/more`,cartproduct.client_id);
   }
 }

@@ -23,7 +23,7 @@ export class CartPage implements OnInit {
     this.Router.navigate(['/buy']); 
   }
 
-  getUserCart(){
+  private getUserCart(){
     const userId = `${localStorage.getItem('user_id')}`;
     this.apicart.getUserCart(userId).subscribe({
       next: (response) => {
@@ -38,5 +38,27 @@ export class CartPage implements OnInit {
       }
     });
   }
+  protected incrementOne(id:string){
+    const userId = `${localStorage.getItem('user_id')}`;
+    console.log('id del cliente: ' + id);
+    const cartproduct = {
+      client_id: userId,
+      id: id
+    };
+    this.apicart.incrementOne(cartproduct).subscribe({
+      next: (response) => {
+        console.log('Producto agregado al carrito:', response);
+        this.getUserCart();
+      },
+      error: (error) => {
+        console.error('Error al agregar producto al carrito:', error);
+      },
+      complete: () => {
+        console.log('La acción se completó correctamente');
+      }
+    });
+
+  }
+  
   
 }

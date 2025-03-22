@@ -23,6 +23,7 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
+    localStorage.removeItem('user_id');
     return this.http.post(`${this.url}/logout`, {});
   }
 }
