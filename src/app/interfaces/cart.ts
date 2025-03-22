@@ -11,3 +11,8 @@ export interface Cart{
       id: string;
 }
 
+export interface CartProduct{
+      client_id: string;
+      id: string;
+}
+

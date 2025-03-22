@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { UserRegister } from 'src/app/interfaces/user-register';
 import { AuthCredentials } from 'src/app/interfaces/auth-credentials';
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private readonly url = "http://127.0.0.1:8000/api";
+   private readonly url = environment.apiUrl;
 
   constructor(private http: HttpClient) { }
 

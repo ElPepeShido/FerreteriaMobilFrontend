@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/interfaces/user';
-import {  } from 'src/app/interfaces/user';
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  protected readonly url="http://127.0.0.1:8000/api"
+  protected readonly url= environment.apiUrl;
 
   // guardar(user: User, archivo: File | null): Observable<any> {
   //   const formData = new FormData();

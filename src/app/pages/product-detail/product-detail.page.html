@@ -69,10 +69,9 @@
       </ion-card-content>
     </ion-card>
     
-      <ion-button class="button-add" fill="solid">
-        <ion-icon name="cart-outline" slot="start"></ion-icon>
+      <ion-button class="button-add" (click)="sendToCart(product.id)" fill="solid">
+        <ion-icon  name="cart-outline" slot="start"></ion-icon>
         Agregar al carrito
       </ion-button>
-    <ion-toast  position="bottom" message="Mensaje de error momentaneo" [duration]="2000"></ion-toast>
   </ion-content>
 </div>

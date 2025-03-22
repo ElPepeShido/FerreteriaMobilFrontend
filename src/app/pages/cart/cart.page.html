@@ -17,12 +17,12 @@
 
     <ion-card class="principal-card">
       <ion-card-header>
-        <ion-card-title>Total: $  MXN</ion-card-title>
+        <ion-card-title>Total: $ {{cart.total}} MXN</ion-card-title>
         <ion-card-subtitle>Mi carrito</ion-card-subtitle>
       </ion-card-header>
     
       <ion-card-content>
-        ¿Quieres comprar ahora? puededes hacerlo con PayPal
+        ¿Quieres pagar ahora? puededes hacerlo con PayPal
       </ion-card-content>
     
       <ion-button (click)="goToPay()" class="pagar" fill="solid">
@@ -36,20 +36,20 @@
         <ion-card-subtitle>Productos en el carrito</ion-card-subtitle>
       </ion-card-header>
       <ion-list >
-        <ion-item  class="ion-activatable ripple-parent rectangle"> <!--TODO Agregar el *ngFOR -->
+        <ion-item *ngFor="let producto of cart.producto_cart" class="ion-activatable ripple-parent rectangle"> <!--TODO Agregar el *ngFOR -->
           <ion-avatar class="product">
             <img src="assets/images/empty-image.jpeg" alt="producto" />
           </ion-avatar>
           <ion-label>
-            <h1>Nombre</h1>
-            <p>Descripción</p> <!--TODO Agregar el slice que puse en el otro-->
-            <h2 class="precio">Precio</h2>
-            <h2>Cantidad: </h2>
-            <h2>Existencias: </h2>
+            <h1>{{producto.producto?.name}}</h1>
+            <p>{{producto.producto?.description}}</p> <!--TODO Agregar el slice que puse en el otro-->
+            <h2 class="precio">${{producto.producto?.retail_price}} MXN</h2>
+            <h2>Cantidad:{{producto.quantity}} </h2>
+            <h2>Existencias:{{producto.producto?.stock}} </h2>
           </ion-label>
           <ion-card class="cantidades">
             <ion-button class="add" fill="solid"><ion-icon name="add-outline"></ion-icon></ion-button>
-            <h2>2</h2>
+            <h2>{{producto.quantity}}</h2>
             <ion-button class="quit" fill="solid"><ion-icon name="remove-outline"></ion-icon></ion-button>
           </ion-card>
           <ion-ripple-effect></ion-ripple-effect>

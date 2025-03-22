@@ -56,9 +56,13 @@ export class ProductDetailPage implements OnInit {
 
   protected sendToCart(productId: string) {
     const usrid = `${localStorage.getItem('user_id')}`;
-    this.crudCart.addToCart(productId, usrid).subscribe({
+    const cartproduct = {
+      client_id: usrid,
+      id: productId
+    };
+    this.crudCart.addToCart(cartproduct).subscribe({
       next: async (response) => {
-        if (response.message) {  // Suponiendo que la API devuelve un campo 'success'
+        if (response) {  
           this.showToast('Producto agregado al carrito con éxito', 'success');
         }
       },
@@ -76,7 +80,7 @@ export class ProductDetailPage implements OnInit {
     const toast = await this.toastController.create({
       message,
       duration: 2000,  
-      position: 'top', // Puede ser 'top', 'middle' o 'bottom'
+      position: 'top',
       color
     });
     await toast.present();

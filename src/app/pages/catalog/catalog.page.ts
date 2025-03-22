@@ -27,17 +27,17 @@ export class CatalogPage implements OnInit {
   }
 
   getProducts(){
-    this.api.getProducts().subscribe(response => {
-      if (response?.data?.data) {
-        this.productsList = response.data.data;      
-        console.log(this.productsList);
-      } else {
-        console.error("La estructura de la respuesta no es la esperada");
-        this.productsList = [];
+    this.api.getProducts().subscribe({
+      next: async (response) => {
+        this.productsList = response.data;
+      },
+      error: async (error) => {
+        console.error('Error al obtener los productos:', error);
+      },
+      complete: () => {
+        console.log('La acción se completó correctamente');
       }
-    }, err => {
-      console.error(err);
-    });
+    })
   }
 
   getCurrentUser(){

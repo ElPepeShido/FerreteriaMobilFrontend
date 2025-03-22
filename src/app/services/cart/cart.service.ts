@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CartAddResponse, CartProduct } from 'src/app/interfaces/cart';
+import { CartResponse } from 'src/app/interfaces/cartResponse';
+import { environment } from "src/environments/environment";
 
 
 @Injectable({
@@ -8,13 +11,16 @@ import { Observable } from 'rxjs';
 })
 export class CartService {
 
-  private readonly baseUrl = 'http://127.0.0.1:8000/api/';
+  private readonly baseUrl = environment.apiUrl;
 
   constructor(private http:HttpClient) { }
 
 
-  addToCart(productId: string,clientID:string): Observable<any> {
-    return this.http.post(`${this.baseUrl}/cart/${productId}/more`,clientID);
+  public addToCart(cartproduct:CartProduct): Observable<CartAddResponse> {
+    return this.http.post<CartAddResponse>(`${this.baseUrl}/cart/add`,cartproduct);
   }
-  
+
+  public getUserCart(userId:string):Observable<CartResponse>{
+    return this.http.get<CartResponse>(`${this.baseUrl}/cart/${userId}`);
+  }
 }
