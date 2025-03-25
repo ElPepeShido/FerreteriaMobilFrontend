@@ -9,7 +9,7 @@ import { AuthCredentials } from 'src/app/interfaces/auth-credentials';
 })
 export class AuthService {
 
-  private readonly url = "http://127.0.0.1:8000/api";
+  private readonly url = "https://emixtrex.com/api";
 
   constructor(private http: HttpClient) { }
 

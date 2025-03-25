@@ -72,34 +72,18 @@
     <ion-card>
       <ion-title>Direcciones</ion-title>
       <ion-list>
-        <ion-item>
+        <ion-item> <!--TODO: AGRREGAR EL *ngFor PARA LAS DIRECCIONES, TENEMOS QUE AÑADIR EL INPUT DE DIRECCIONES PARA PODER AGREGARLAS-->
           <ion-label>
             <h2>Direccion 1</h2>
             <p>Calle Reforma 123, Col. Centro, Ciudad de México, CDMX, 06000, México</p>
           </ion-label>
-          <ion-button color="warning" class="button-info" slot="end">
-            <ion-icon name="pencil-sharp" size="large"></ion-icon>
-          </ion-button>
-        </ion-item>
-        <ion-item>
-          <ion-label>
-            <h2>Direccion 2</h2>
-            <p>Av. Siempre Viva 742, Springfield, Illinois, 62704, EE.UU.</p>
-          </ion-label>
-          <ion-button color="warning" class="button-info" slot="end">
-            <ion-icon name="pencil-sharp" size="large"></ion-icon>
-          </ion-button>
-        </ion-item>
-        <ion-item>
-          <ion-label>
-            <h2>Direccion 3</h2>
-            <p>Carrer de la Pau 56, 08002 Barcelona, España</p>
-          </ion-label>
-          <ion-button color="warning" class="button-info" slot="end">
+          <ion-button color="warning" class="button-info" slot="end">  <!--TODO: AGREGAR UNA FUNCIÓN QUE MANDE LA LISTA DE EDITAR CON LOS CAMBIOS POSIBLES-->
             <ion-icon name="pencil-sharp" size="large"></ion-icon>
           </ion-button>
         </ion-item>
       </ion-list>
+      <!-- TODO: DINAMICO SI HAY MSNOS DE 3 DIRECCIONES-->
+      <ion-button href="" class="crea-cuenta grande">Agregar dirección</ion-button> 
     </ion-card>
 
     <ion-card>

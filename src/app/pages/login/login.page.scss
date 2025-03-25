@@ -39,6 +39,11 @@ ion-button {
     --background: #f77f00;
 }
 
+.google{
+    --background: #fdfdfd;
+    --color: #000000;
+}
+
 .crea-cuenta{
     --background: #15207e;
 }
@@ -51,4 +56,8 @@ ion-toast{
     --background: red;
     --color: #ffffff;
     text-align: center;
+}
+
+ion-icon{
+    margin-right: 10px;
 }

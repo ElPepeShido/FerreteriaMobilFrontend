@@ -7,10 +7,12 @@
     <ion-input [(ngModel)]="user.password" class="mi-input" type="password" fill="solid" label="Contraseña" labelPlacement="floating"
       helperText="Ingrese su contraseña" errorText="Contraseña no posible" ngModel password></ion-input>
     <ion-button type="submit" (click)="login()" class="inicia-sesion">Iniciar Sesión</ion-button>
+    <ion-button class="google"> <!-- TODO: AGREGAR FUNCION QUE LLAME AL ENDPOINT DE AUTH CON GOOGLE-->
+      <ion-icon name="logo-google"></ion-icon>
+      Ingresar con google
+    </ion-button> 
     <p>¿No tienes una cuenta?</p>
     <a href="/create-acount"><ion-button class="crea-cuenta">Crear una cuenta</ion-button></a>
+
   </ion-card>
-  <ion-toast  [duration]="2000" *ngIf="errors">
-    Credenciales no válidas
-  </ion-toast>
 </ion-content>
