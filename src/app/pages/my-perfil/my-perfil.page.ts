@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/services/user/user.service';
 import { User } from 'src/app/interfaces/user';
+import { Direction } from 'src/app/interfaces/direction';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { IonModal } from '@ionic/angular';
+import { DirectionsService } from 'src/app/services/directions/directions.service';
 
 @Component({
   standalone: false,
@@ -12,15 +14,19 @@ import { IonModal } from '@ionic/angular';
 })
 export class MyPerfilPage implements OnInit {
   private crud:UserService;
+  private directions: DirectionsService;
   protected User: User = {} as User;
+  protected directionsList: Direction[]= [];
   protected userId:string = localStorage.getItem('user_id') || "";
-  constructor(crud:UserService) { 
+
+  constructor(crud:UserService, directions: DirectionsService) { 
     this.crud = crud;
-    
+    this.directions = directions;
   }
   
   ngOnInit() {
     this.getUser();
+    this.getDirections
   }
   getUser() {
     this.crud.getAuthenticatedUser().subscribe(
@@ -41,6 +47,17 @@ export class MyPerfilPage implements OnInit {
       }
     );
   }
+
+  getDirections(){
+    this.directions.getDirections(this.userId).subscribe(
+      response => {
+        console.log('Direcciones obtenidas:', response);
+        this.directionsList = response;
+      },
+    )
+  }
+
+
 
   // ? SECCION DE EDITAR DIRECCIÓN
 

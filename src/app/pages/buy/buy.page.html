@@ -18,14 +18,53 @@
 
     <ion-card class="principal-card">
       <ion-card-header>
-        <ion-card-title>Total: $  MXN</ion-card-title>
+        <ion-card-title>Total: $ MXN</ion-card-title>
         <ion-card-subtitle>Realizar compra</ion-card-subtitle>
       </ion-card-header>
-    
+
       <ion-card-content>
         ¿Quieres comprar ahora?
       </ion-card-content>
       <p>Seleccione una dirección para enviar su compra.</p>
+      <!-- TODO: AGREGAR ESTE SECMENTO DE NO HABER DIRECCIONES-->
+      <ion-button trigger="agregar-direccion">Agregar dirección</ion-button>
+      <ion-modal #agregarModal trigger="agregar-direccion" (willDismiss)="onWillDismiss($event)">
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-buttons slot="start">
+                <ion-button (click)="cancel(agregarModal)">Cancelar</ion-button>
+              </ion-buttons>
+              <ion-title>Dirección</ion-title>
+              <ion-buttons slot="end">
+                <ion-button (click)="confirm(agregarModal)" [strong]="true">Agregar</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content class="ion-padding">
+            <ion-item>
+              <ion-input label="Nombre" labelPlacement="stacked" type="text" placeholder='"Mi casa"'></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Estado" labelPlacement="stacked" type="text" placeholder="Estado"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Ciudad" labelPlacement="stacked" type="text" placeholder="Ciudad"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Código postal" labelPlacement="stacked" type="text" placeholder="Código postal"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Dirección" labelPlacement="stacked" type="text" placeholder="Calle y número"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Referencias" labelPlacement="stacked" type="text" placeholder="Referencias"></ion-input>
+            </ion-item>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+
+      <!-- TODO FIN DEL SECMENTO-->
       <ion-list>
         <ion-item>
           <ion-select placeholder="Escoje una">
@@ -46,8 +85,8 @@
         <ion-card-title>Lista de productos</ion-card-title>
         <ion-card-subtitle>Productos en el carrito</ion-card-subtitle>
       </ion-card-header>
-      <ion-list >
-        <ion-item  class="ion-activatable ripple-parent rectangle"> <!--TODO Agregar el *ngFOR -->
+      <ion-list>
+        <ion-item class="ion-activatable ripple-parent rectangle"> <!--TODO Agregar el *ngFOR -->
           <ion-avatar class="product">
             <img [src]="" alt="producto" />
           </ion-avatar>
