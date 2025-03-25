@@ -10,16 +10,23 @@
 
   <ion-content [fullscreen]="true">
 
-    <ion-header collapse="condense">
+    <!-- <ion-header collapse="condense">
       <ion-toolbar>
         <ion-title size="large">Nuestros productos</ion-title>
       </ion-toolbar>
-    </ion-header>
+    </ion-header> -->
 
-    <ion-list>
+    <ion-refresher slot="fixed" [pullFactor]="0.5" [pullMin]="100" [pullMax]="200" (ionRefresh)="handleRefresh($event)">
+      <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="desliza hacia abajo"
+        refreshingSpinner="circles" refreshingText="Refrescando..."></ion-refresher-content>
+    </ion-refresher>
+
+    <img *ngIf="productsList.length === 0" src="assets/images/empty-view.png" class="full-image" />
+
+    <ion-list *ngIf="productsList.length > 0">
       <ion-item *ngFor="let product of productsList" class="ion-activatable ripple-parent rectangle">
         <ion-avatar class="product">
-          <ion-img class="img-slide" [src]="'assets/images/empty-image.jpeg'" />
+          <ion-img class="img-slide" [src]="'assets/images/empty-image.png'" />
         </ion-avatar>
         <ion-label>
           <h1>{{product.name}}</h1>
@@ -30,9 +37,5 @@
         <ion-ripple-effect></ion-ripple-effect>
       </ion-item>
     </ion-list>
-    <ion-infinite-scroll>
-      <ion-infinite-scroll-content loadingText="Please wait..." loadingSpinner="bubbles"></ion-infinite-scroll-content>
-    </ion-infinite-scroll>
-    <ion-toast position="top" message="Mensaje de error momentaneo" [duration]="2000"></ion-toast>
   </ion-content>
 </div>

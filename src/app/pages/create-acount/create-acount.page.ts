@@ -49,7 +49,7 @@ export class CreateAcountPage implements OnInit {
     this.api.saveUser(this.user,this.selectedFile).subscribe({
       next: (response) => {
         console.log('Usuario creado:', response);
-        this.router.navigate(['/catalog']);
+        this.router.navigate(['/login']);
       },
       error: (error) => {
         console.error('Error al crear el usuario:', error);

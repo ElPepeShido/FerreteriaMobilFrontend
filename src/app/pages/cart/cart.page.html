@@ -39,7 +39,7 @@
         <ion-item-sliding *ngFor="let producto of cart.producto_cart">
         <ion-item  class="ion-activatable ripple-parent rectangle"> <!--TODO Agregar el *ngFOR -->
           <ion-avatar class="product">
-            <img src="assets/images/empty-image.jpeg" alt="producto" />
+            <img src="assets/images/empty-image.png" alt="producto" />
           </ion-avatar>
           <ion-label>
             <h1>{{producto.producto?.name}}</h1>
@@ -66,8 +66,5 @@
       </ion-item-sliding>
       </ion-list>
     </ion-card>
-    <ion-infinite-scroll>
-      <ion-infinite-scroll-content loadingText="Please wait..." loadingSpinner="bubbles"></ion-infinite-scroll-content>
-    </ion-infinite-scroll>
-\  </ion-content>
+  </ion-content>
 </div>

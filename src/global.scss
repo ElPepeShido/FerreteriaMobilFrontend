@@ -15,3 +15,10 @@ body {
     color: var(--ion-text-color);
 }
 
+ion-loading.custom-loading {
+    --background: #e3edff;
+    --spinner-color: #ff991c;
+  
+    color: #ff991c;
+  }
+
