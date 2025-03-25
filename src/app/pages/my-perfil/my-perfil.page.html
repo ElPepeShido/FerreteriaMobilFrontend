@@ -35,7 +35,7 @@
         <ion-item>
           <ion-label>Productos en el carrito</ion-label>
           <ion-button color="warning" class="button-info" slot="end">
-            <ion-icon name="cart-outline"  slot="start"></ion-icon>
+            <ion-icon name="cart-outline" slot="start"></ion-icon>
             13
           </ion-button>
         </ion-item>
@@ -71,24 +71,103 @@
 
     <ion-card>
       <ion-title>Direcciones</ion-title>
+
+
       <ion-list>
-        <ion-item> <!--TODO: AGRREGAR EL *ngFor PARA LAS DIRECCIONES, TENEMOS QUE AÑADIR EL INPUT DE DIRECCIONES PARA PODER AGREGARLAS-->
+        <ion-item>
+          <!--TODO: AGRREGAR EL *ngFor PARA LAS DIRECCIONES, TENEMOS QUE AÑADIR EL INPUT DE DIRECCIONES PARA PODER AGREGARLAS-->
           <ion-label>
             <h2>Direccion 1</h2>
             <p>Calle Reforma 123, Col. Centro, Ciudad de México, CDMX, 06000, México</p>
           </ion-label>
-          <ion-button color="warning" class="button-info" slot="end">  <!--TODO: AGREGAR UNA FUNCIÓN QUE MANDE LA LISTA DE EDITAR CON LOS CAMBIOS POSIBLES-->
+          <ion-button id="editar-direccion" color="warning" class="button-info" slot="end">
+            <!--TODO: AGREGAR UNA FUNCIÓN QUE MANDE LA LISTA DE EDITAR CON LOS CAMBIOS POSIBLES-->
             <ion-icon name="pencil-sharp" size="large"></ion-icon>
           </ion-button>
+          <ion-modal #editarModal trigger="editar-direccion" (willDismiss)="onWillDismiss($event)">
+            <ng-template>
+              <ion-header>
+                <ion-toolbar>
+                  <ion-buttons slot="start">
+                    <ion-button id="present-alert" (click)="cancel(editarModal)">Eliminar</ion-button>
+                    <ion-alert trigger="present-alert" header="Eliminar" [buttons]="alertButtons"
+                      (didDismiss)="setResult($event)">
+                      <p>¿Deseas eliminar esta dirección?</p>
+                    </ion-alert>
+                  </ion-buttons>
+                  <ion-title>Editar</ion-title>
+                  <ion-buttons slot="end">
+                    <ion-button (click)="confirm(editarModal)" [strong]="true">Guardar</ion-button>
+                  </ion-buttons>
+                </ion-toolbar>
+              </ion-header>
+              <ion-content class="ion-padding">
+                <ion-item>
+                  <ion-input label="Estado" labelPlacement="stacked" type="text" placeholder="Estado"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-input label="Ciudad" labelPlacement="stacked" type="text" placeholder="Ciudad"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-input label="Código postal" labelPlacement="stacked" type="text" placeholder="Código postal"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-input label="Calle" labelPlacement="stacked" type="text" placeholder="Calle"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-input label="Numero exterior" labelPlacement="stacked" type="text" placeholder="Numero exterior"></ion-input>
+                </ion-item>
+                <ion-item>
+                  <ion-input label="Referencias" labelPlacement="stacked" type="text" placeholder="Referencias"></ion-input>
+                </ion-item>
+              </ion-content>
+            </ng-template>
+          </ion-modal>
         </ion-item>
       </ion-list>
+
+
       <!-- TODO: DINAMICO SI HAY MSNOS DE 3 DIRECCIONES-->
-      <ion-button href="" class="crea-cuenta grande">Agregar dirección</ion-button> 
+      <ion-button id="crear-direccion" expand="block" class="crea-cuenta grande">Agregar dirección</ion-button>
+      <p>{{ message }}</p>
+      <ion-modal #crearModal trigger="crear-direccion" (willDismiss)="onWillDismiss($event)">
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-buttons slot="start">
+                <ion-button (click)="cancel(crearModal)">Cancelar</ion-button>
+              </ion-buttons>
+              <ion-title>Dirección</ion-title>
+              <ion-buttons slot="end">
+                <ion-button (click)="confirm(crearModal)" [strong]="true">Agregar</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content class="ion-padding">
+            <ion-item>
+              <ion-input label="Estado" labelPlacement="stacked" type="text" placeholder="Estado"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Ciudad" labelPlacement="stacked" type="text" placeholder="Ciudad"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Código postal" labelPlacement="stacked" type="text" placeholder="Código postal"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Calle" labelPlacement="stacked" type="text" placeholder="Calle"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Numero exterior" labelPlacement="stacked" type="text" placeholder="Numero exterior"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Referencias" labelPlacement="stacked" type="text" placeholder="Referencias"></ion-input>
+            </ion-item>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
     </ion-card>
 
-
-      <ion-button href="/catalog" class="crea-cuenta grande">Todo bien</ion-button>
-  
+    <ion-button href="/catalog" class="crea-cuenta grande">Todo bien</ion-button>
 
     <ion-fab slot="fixed" vertical="top" horizontal="end" [edge]="true">
       <ion-fab-button href="/edit-profile" color="medium">

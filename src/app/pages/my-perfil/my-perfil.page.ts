@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/services/user/user.service';
 import { User } from 'src/app/interfaces/user';
+import { OverlayEventDetail } from '@ionic/core/components';
+import { IonModal } from '@ionic/angular';
 
 @Component({
   standalone: false,
@@ -39,4 +41,52 @@ export class MyPerfilPage implements OnInit {
       }
     );
   }
+
+  // ? SECCION DE EDITAR DIRECCIÓN
+
+  @ViewChild('editarModal') editarModal!: IonModal;
+  @ViewChild('crearModal') crearModal!: IonModal;
+
+  message = 'Puedes tener un total de 3 direcciones distintas.';
+  name!: string;
+
+  cancel(modal: IonModal) {
+    modal.dismiss(null, 'cancel');
+  }
+
+  confirm(modal: IonModal) {
+    modal.dismiss(this.name, 'confirm');
+  }
+  onWillDismiss(event: CustomEvent<OverlayEventDetail>) {
+    if (event.detail.role === 'confirm') {
+      this.message = `Hello, ${event.detail.data}!`;
+    }
+  }
+
+  // ! FIN DE SECCION DE EDITAR DIRECCIÓN
+
+  // ? SECCION DEL ALERT PARA ELIMINAR LA DIRECCIÓN
+
+  public alertButtons = [
+    {
+      text: 'Cancel',
+      role: 'cancel',
+      handler: () => {
+        console.log('Alert canceled');
+      },
+    },
+    {
+      text: 'OK',
+      role: 'confirm',
+      handler: () => {
+        console.log('Alert confirmed');
+      },
+    },
+  ];
+
+  setResult(event: CustomEvent<OverlayEventDetail>) {
+    console.log(`Dismissed with role: ${event.detail.role}`);
+  }
+
+  // ! FIN SECCION DEL ALERT PARA ELIMINAR LA DIRECCIÓN
 }
