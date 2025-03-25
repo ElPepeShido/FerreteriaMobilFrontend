@@ -19,7 +19,8 @@
 
       <swiper-container>
         <swiper-slide *ngIf="product?.image?.length; else emptyImage">
-          <img class="img-slide" *ngFor="let img of product.image" [src]="img" alt="avatar" />
+          <!-- <img class="img-slide" *ngFor="let img of product.image" [src]="img" alt="avatar" /> -->
+          <img class="img-slide" [src]="'assets/images/empty-image.jpeg'" alt="avatar" />
         </swiper-slide>
         <ng-template #emptyImage>
           <swiper-slide>
@@ -60,7 +61,7 @@
     <ion-card class="card-info">
       <ion-card-header>
         <ion-card-title>{{product.name}}</ion-card-title>
-        <ion-card-subtitle>${{product.sell_price}} MXN</ion-card-subtitle>
+        <ion-card-subtitle>${{product.retail_price}} MXN</ion-card-subtitle>
       </ion-card-header>
 
       <ion-card-content>
@@ -68,10 +69,9 @@
       </ion-card-content>
     </ion-card>
     
-      <ion-button class="button-add" fill="solid">
-        <ion-icon name="cart-outline" slot="start"></ion-icon>
+      <ion-button class="button-add" (click)="sendToCart(product.id)" fill="solid">
+        <ion-icon  name="cart-outline" slot="start"></ion-icon>
         Agregar al carrito
       </ion-button>
-    <ion-toast position="bottom" message="Mensaje de error momentaneo" [duration]="2000"></ion-toast>
   </ion-content>
 </div>

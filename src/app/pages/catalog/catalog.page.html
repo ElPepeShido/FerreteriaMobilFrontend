@@ -16,15 +16,15 @@
       </ion-toolbar>
     </ion-header>
 
-    <ion-list >
+    <ion-list>
       <ion-item *ngFor="let product of productsList" class="ion-activatable ripple-parent rectangle">
         <ion-avatar class="product">
-          <img [src]="product?.image?.length ? product.image[0] : 'assets/images/empty-image.jpeg'" alt="producto" />
+          <ion-img class="img-slide" [src]="'assets/images/empty-image.jpeg'" />
         </ion-avatar>
         <ion-label>
           <h1>{{product.name}}</h1>
           <p>{{product.description ? (product.description | slice:0:45) + '...' : 'Sin descripción' }}</p>
-          <h2>${{product.sell_price}} MXN</h2>
+          <h2>${{product.retail_price}} MXN</h2>
         </ion-label>
         <ion-icon (click)="goToProductDetail(product.id)" name="chevron-forward-outline" slot="end"></ion-icon>
         <ion-ripple-effect></ion-ripple-effect>

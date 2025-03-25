@@ -25,6 +25,7 @@ export class CloseSessionPage implements OnInit {
     this.tokenService.removeToken();
     this.tokenService.removeId();
     this.router.navigate(['/login']);
+    console.log('id recuperado de el cierre de session' + `${this.tokenService.getId()}`);
     console.log('Sesión cerrada');
   }
 

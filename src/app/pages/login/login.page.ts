@@ -41,7 +41,8 @@ export class LoginPage implements OnInit {
     this.authService.login(this.user).subscribe(
       response => {
         this.tokenService.setToken(response.token, response.User.id);
-        this.router.navigateByUrl('/my-perfil');
+        console.log('id registrado desde Login: ' + `${this.tokenService.getId()}`);
+        this.router.navigateByUrl('/catalog');
       },
       (error) => {
         console.error('Error en login', error);

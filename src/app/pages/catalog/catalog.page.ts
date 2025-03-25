@@ -23,19 +23,21 @@ export class CatalogPage implements OnInit {
 
   ngOnInit() {
     this.getProducts();
+    
   }
 
   getProducts(){
-    this.api.getProducts().subscribe(response => {
-      if (response?.data?.data) {
-        this.productsList = response.data.data;
-      } else {
-        console.error("La estructura de la respuesta no es la esperada");
-        this.productsList = [];
+    this.api.getProducts().subscribe({
+      next: async (response) => {
+        this.productsList = response.data;
+      },
+      error: async (error) => {
+        console.error('Error al obtener los productos:', error);
+      },
+      complete: () => {
+        console.log('La acción se completó correctamente');
       }
-    }, err => {
-      console.error(err);
-    });
+    })
   }
 
   getCurrentUser(){
@@ -51,5 +53,6 @@ export class CatalogPage implements OnInit {
   goToProductDetail(productId: string) {
     localStorage.setItem('product_id', productId);
     this.router.navigate(['/product-detail', productId]);
-  }
+  }  
+  
 }
