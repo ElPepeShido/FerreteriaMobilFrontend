@@ -25,18 +25,21 @@
     <ion-input [(ngModel)]="user.name" name="nombre" class="mi-input" type="text" fill="solid" label="Nombre"
       labelPlacement="floating" helperText="Ingrese su Nombre" errorText="Nombre no válido"></ion-input>
 
-    <ion-input [(ngModel)]="user.last_name" name="apellidos" class="mi-input" type="text" fill="solid"
+    <ion-input [(ngModel)]="user.lastName" name="apellidos" class="mi-input" type="text" fill="solid"
       label="Apellido" labelPlacement="floating" helperText="Ingrese sus Apellidoss"
       errorText="Correo Apellido"></ion-input>
 
     <ion-input [(ngModel)]="user.email" name="email" class="mi-input" type="email" fill="solid" label="Email"
       labelPlacement="floating" helperText="Ingrese su correo" errorText="Correo invalido"></ion-input>
 
+      <ion-input [(ngModel)]="user.phone" name="phone" class="mi-input" type="email" fill="solid" label="Phone"
+      labelPlacement="floating" helperText="Ingrese su numero de telefono" errorText="numero invalido"></ion-input>
+
     <ion-input [(ngModel)]="user.password" name="password" class="mi-input" type="password" fill="solid"
       label="Contraseña" labelPlacement="floating" helperText="Ingrese su contraseña"
       errorText="Contraseña no posible"></ion-input>
 
-    <!-- <ion-button id="open-toast" class="crea-cuenta" (click)="botonGuardar()">Crear cuenta</ion-button> -->
+    <ion-button id="open-toast" class="crea-cuenta" (click)="botonGuardar()">Crear cuenta</ion-button>
   </ion-card>
   <ion-toast position="top" message="Mensaje de error momentaneo" [duration]="2000"></ion-toast>
 </ion-content>

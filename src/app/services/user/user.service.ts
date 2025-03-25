@@ -11,23 +11,23 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  protected readonly url= environment.apiUrl;
+  private readonly url= environment.apiUrl;
 
-  // guardar(user: User, archivo: File | null): Observable<any> {
-  //   const formData = new FormData();
-  //   formData.append('id', user.id);
-  //   formData.append('nombre', user.name);
-  //   formData.append('email', user.email);
-  //   formData.append('password', user.password);
-
-  //   if (archivo) {
-  //     formData.append('image', archivo);
-  //   }
-  //   console.log('FormData a enviar:', formData);
+  saveUser(user: User, archivo: File | null): Observable<any> {
+    const formData = new FormData();
+    formData.append('name', user.name);
+    formData.append('lastName', user.lastName);
+    formData.append('email', user.email);
+    formData.append('phone', user.phone);
+    formData.append('password', user.password);
+    formData.append('socialMedia', user.socialMedia);
 
 
-  //   return this.http.post(this.url, formData);
-  // }
+    if (archivo) {
+      formData.append('image', archivo);
+    }
+    return this.http.post(`${this.url}/register`, formData);
+  }
   
   getUser(id:string): Observable<User> {
     return this.http.get<User>(`${this.url}/user/${id}`);

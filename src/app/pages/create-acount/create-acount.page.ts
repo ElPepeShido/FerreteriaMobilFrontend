@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user/user.service';
 import { User } from 'src/app/interfaces/user';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   standalone: false,
@@ -12,26 +11,22 @@ import { FormsModule } from '@angular/forms';
 })
 export class CreateAcountPage implements OnInit {
 
-  private crud:UserService;
+  private api:UserService;
   private selectedFile: File | null = null; 
   previewUrl: string | ArrayBuffer | null = null; 
 
 
   user:User = {
-    id:"",
-    name: "",
-    last_name:  "",
-    email:"",
-    password: "",
-    image:"",
-    phone:"",
-    rfc:"",
-    role:"",
-    updated_at:"",
-    created_at:"",
+    name: '',
+    lastName: '',
+    image: '',
+    email: '',
+    phone: '',
+    password: '',
+    socialMedia: 'Facebook',
   }
   constructor(crud:UserService, private router:Router) { 
-    this.crud = crud;
+    this.api = crud;
   }
 
   ngOnInit() {
@@ -44,24 +39,25 @@ export class CreateAcountPage implements OnInit {
       this.selectedFile = file;
       const reader = new FileReader();
       reader.onload = () => {
-        this.previewUrl = reader.result; // Guardar la URL de vista previa
+        this.previewUrl = reader.result;
       };
       reader.readAsDataURL(file);
     }
   }
   
-  // botonGuardar() {
-  //   console.log('Usuario a guardar : ', this.user);
-  //   this.crud.guardar(this.user,this.selectedFile!).subscribe(
-  //     response => {
-  //       console.log('Cliente guardado con éxito:', response);
-  //     },
-  //     error => {
-  //       console.error('Error al guardar cliente:', error.error);
-  //     }
-  //   );
-  // }
-
-
+  botonGuardar() {
+    this.api.saveUser(this.user,this.selectedFile).subscribe({
+      next: (response) => {
+        console.log('Usuario creado:', response);
+        this.router.navigate(['/catalog']);
+      },
+      error: (error) => {
+        console.error('Error al crear el usuario:', error);
+      },
+      complete: () => {
+        console.log('La acción se completó correctamente');
+      }
+    });
+  }
 
 }

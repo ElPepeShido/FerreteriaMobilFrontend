@@ -43,7 +43,8 @@
           </ion-avatar>
           <ion-label>
             <h1>{{producto.producto?.name}}</h1>
-            <p>{{producto.producto?.description}}</p> <!--TODO Agregar el slice que puse en el otro-->
+            <p>{{ (producto.producto?.description || 'Sin descripción') | slice:0:45 }}...
+            </p> 
             <h2 class="precio">${{producto.producto?.retail_price}} MXN</h2>
             <h2>Cantidad:{{producto.quantity}} </h2>
             <h2>Existencias:{{producto.producto?.stock}} </h2>
