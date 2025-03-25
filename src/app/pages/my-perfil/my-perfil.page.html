@@ -17,7 +17,7 @@
 
     <ion-card>
       <ion-avatar class="perfil-img">
-        <img alt="Silhouette of a person's head" src="{{User.image}}" />
+        <img alt="Silhouette of a person's head" [src]="User.image" />
       </ion-avatar>
       <ion-title>{{User.name}}</ion-title>
     </ion-card>
@@ -64,7 +64,7 @@
 
         <ion-item>
           <ion-label>Teléfono:</ion-label>
-          <p></p>
+          <p>{{User.phone}}</p>
         </ion-item>
       </ion-list>
     </ion-card>
@@ -74,11 +74,11 @@
 
 
       <ion-list>
-        <ion-item>
+        <ion-item *ngFor="let direction of User.direction">
           <!--TODO: AGRREGAR EL *ngFor PARA LAS DIRECCIONES, TENEMOS QUE AÑADIR EL INPUT DE DIRECCIONES PARA PODER AGREGARLAS-->
           <ion-label>
-            <h2>Direccion 1</h2>
-            <p>Calle Reforma 123, Col. Centro, Ciudad de México, CDMX, 06000, México</p>
+            <h2>{{direction.name}}</h2>
+            <p>{{direction.residence}}, {{direction.city}}. {{direction.state}}, {{direction.postal_code}}.</p>
           </ion-label>
           <ion-button id="editar-direccion" color="warning" class="button-info" slot="end">
             <!--TODO: AGREGAR UNA FUNCIÓN QUE MANDE LA LISTA DE EDITAR CON LOS CAMBIOS POSIBLES-->
@@ -131,7 +131,7 @@
 
 
       <!-- TODO: DINAMICO SI HAY MSNOS DE 3 DIRECCIONES-->
-      <ion-button id="crear-direccion" expand="block" class="crea-cuenta grande">Agregar dirección</ion-button>
+      <ion-button *ngIf="(User?.direction?.length ?? 0) < 3" id="crear-direccion" expand="block" class="crea-cuenta grande">Agregar dirección</ion-button>
       <p>{{ message }}</p>
       <ion-modal #crearModal trigger="crear-direccion" (willDismiss)="onWillDismiss($event)">
         <ng-template>
@@ -142,30 +142,30 @@
               </ion-buttons>
               <ion-title>Dirección</ion-title>
               <ion-buttons slot="end">
-                <ion-button (click)="confirm(crearModal)" [strong]="true">Agregar</ion-button>
+                <ion-button (click)="confirm(crearModal)" (click)="setDirections()" [strong]="true">Agregar</ion-button>
               </ion-buttons>
             </ion-toolbar>
           </ion-header>
           <ion-content class="ion-padding">
             <ion-item>
-              <ion-input label="Nombre" labelPlacement="stacked" type="text" placeholder='"Mi casa"'></ion-input>
+              <ion-input [(ngModel)]="direction.name" label="Nombre" labelPlacement="stacked" type="text" placeholder='"Mi casa"'></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input label="Estado" labelPlacement="stacked" type="text" placeholder="Estado"></ion-input>
+              <ion-input [(ngModel)]="direction.state" label="Estado" labelPlacement="stacked" type="text" placeholder="Estado"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input label="Ciudad" labelPlacement="stacked" type="text" placeholder="Ciudad"></ion-input>
+              <ion-input [(ngModel)]="direction.city" label="Ciudad" labelPlacement="stacked" type="text" placeholder="Ciudad"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input label="Código postal" labelPlacement="stacked" type="text"
+              <ion-input [(ngModel)]="direction.postal_code" label="Código postal" labelPlacement="stacked" type="text"
                 placeholder="Código postal"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input label="Dirección" labelPlacement="stacked" type="text"
+              <ion-input [(ngModel)]="direction.residence" label="Dirección" labelPlacement="stacked" type="text"
                 placeholder="Calle y número"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input label="Referencias" labelPlacement="stacked" type="text" placeholder="Referencias"></ion-input>
+              <ion-input [(ngModel)]="direction.description" label="Referenciais" labelPlacement="stacked" type="text" placeholder="Referencias"></ion-input>
             </ion-item>
           </ion-content>
         </ng-template>

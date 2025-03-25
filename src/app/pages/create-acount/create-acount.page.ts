@@ -17,6 +17,7 @@ export class CreateAcountPage implements OnInit {
 
 
   user:User = {
+    direction: [],
     name: '',
     lastName: '',
     image: '',
