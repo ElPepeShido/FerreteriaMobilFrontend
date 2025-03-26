@@ -1,4 +1,5 @@
 export interface Direction {
+    id: string;
     user_id: string;
     state: string;
     city: string;

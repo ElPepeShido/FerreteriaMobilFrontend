@@ -21,7 +21,7 @@ export class DirectionsService {
   }
 
   updateDirections(id: string, direction: any): Observable<any>{
-    return this.http.put(`${this.url}/direction/${id}`, direction);
+    return this.http.post(`${this.url}/direction/${id}`, direction);
   }
 
   deleteDirections(id: string): Observable<any>{

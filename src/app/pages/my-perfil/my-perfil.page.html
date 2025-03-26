@@ -72,56 +72,59 @@
     <ion-card>
       <ion-title>Direcciones</ion-title>
 
-
       <ion-list>
         <ion-item *ngFor="let direction of User.direction">
-          <!--TODO: AGRREGAR EL *ngFor PARA LAS DIRECCIONES, TENEMOS QUE AÑADIR EL INPUT DE DIRECCIONES PARA PODER AGREGARLAS-->
           <ion-label>
             <h2>{{direction.name}}</h2>
             <p>{{direction.residence}}, {{direction.city}}. {{direction.state}}, {{direction.postal_code}}.</p>
           </ion-label>
-          <ion-button id="editar-direccion" color="warning" class="button-info" slot="end">
-            <!--TODO: AGREGAR UNA FUNCIÓN QUE MANDE LA LISTA DE EDITAR CON LOS CAMBIOS POSIBLES-->
+
+          <!-- Botón para abrir el modal de edición con la dirección seleccionada -->
+          <ion-button color="warning" class="button-info" slot="end" (click)="editDirection(direction)">
             <ion-icon name="pencil-sharp" size="large"></ion-icon>
           </ion-button>
-          <ion-modal #editarModal trigger="editar-direccion" (willDismiss)="onWillDismiss($event)">
+
+          <!-- Modal de edición de dirección -->
+          <ion-modal #editarModal>
             <ng-template>
               <ion-header>
                 <ion-toolbar>
                   <ion-buttons slot="start">
-                    <ion-button id="present-alert" (click)="cancel(editarModal)">Eliminar</ion-button>
-                    <ion-alert trigger="present-alert" header="Eliminar" [buttons]="alertButtons"
-                      (didDismiss)="setResult($event)">
-                      <p>¿Deseas eliminar esta dirección?</p>
-                    </ion-alert>
+                    <!-- Alert para confirmar la eliminación -->
+                    <ion-button id="present-alert" (click)="presentDeleteAlert(direction.id)">Eliminar</ion-button>
+                    <ion-alert trigger="present-alert" header="Eliminar" [buttons]="alertButtons"></ion-alert>
                   </ion-buttons>
                   <ion-title>Editar</ion-title>
                   <ion-buttons slot="end">
-                    <ion-button (click)="confirm(editarModal)" [strong]="true">Guardar</ion-button>
+                    <ion-button (click)="updateDirection(editarModal)" [strong]="true">Guardar</ion-button>
                   </ion-buttons>
                 </ion-toolbar>
               </ion-header>
+
               <ion-content class="ion-padding">
                 <ion-item>
-                  <ion-input label="Nombre" labelPlacement="stacked" type="text" placeholder='"Mi casa"'></ion-input>
+                  <ion-input [(ngModel)]="direction.name" label="Nombre" labelPlacement="stacked" type="text"
+                    placeholder='"Mi casa"'></ion-input>
                 </ion-item>
                 <ion-item>
-                  <ion-input label="Estado" labelPlacement="stacked" type="text" placeholder="Estado"></ion-input>
+                  <ion-input [(ngModel)]="direction.state" label="Estado" labelPlacement="stacked" type="text"
+                    placeholder="Estado"></ion-input>
                 </ion-item>
                 <ion-item>
-                  <ion-input label="Ciudad" labelPlacement="stacked" type="text" placeholder="Ciudad"></ion-input>
+                  <ion-input [(ngModel)]="direction.city" label="Ciudad" labelPlacement="stacked" type="text"
+                    placeholder="Ciudad"></ion-input>
                 </ion-item>
                 <ion-item>
-                  <ion-input label="Código postal" labelPlacement="stacked" type="text"
-                    placeholder="Código postal"></ion-input>
+                  <ion-input [(ngModel)]="direction.postal_code" label="Código postal" labelPlacement="stacked"
+                    type="text" placeholder="Código postal"></ion-input>
                 </ion-item>
                 <ion-item>
-                  <ion-input label="Dirección" labelPlacement="stacked" type="text"
+                  <ion-input [(ngModel)]="direction.residence" label="Dirección" labelPlacement="stacked" type="text"
                     placeholder="Calle y número"></ion-input>
                 </ion-item>
                 <ion-item>
-                  <ion-input label="Referencias" labelPlacement="stacked" type="text"
-                    placeholder="Referencias"></ion-input>
+                  <ion-input [(ngModel)]="direction.description" label="Referencias" labelPlacement="stacked"
+                    type="text" placeholder="Referencias"></ion-input>
                 </ion-item>
               </ion-content>
             </ng-template>
@@ -129,10 +132,11 @@
         </ion-item>
       </ion-list>
 
+      <!-- Botón para agregar una nueva dirección -->
+      <ion-button *ngIf="(User?.direction?.length ?? 0) < 3" id="crear-direccion" expand="block"
+        class="crea-cuenta grande">Agregar dirección</ion-button>
+      <p>Puedes tener un máximo de 3 direcciones</p>
 
-      <!-- TODO: DINAMICO SI HAY MSNOS DE 3 DIRECCIONES-->
-      <ion-button *ngIf="(User?.direction?.length ?? 0) < 3" id="crear-direccion" expand="block" class="crea-cuenta grande">Agregar dirección</ion-button>
-      <p>{{ message }}</p>
       <ion-modal #crearModal trigger="crear-direccion" (willDismiss)="onWillDismiss($event)">
         <ng-template>
           <ion-header>
@@ -148,13 +152,16 @@
           </ion-header>
           <ion-content class="ion-padding">
             <ion-item>
-              <ion-input [(ngModel)]="direction.name" label="Nombre" labelPlacement="stacked" type="text" placeholder='"Mi casa"'></ion-input>
+              <ion-input [(ngModel)]="direction.name" label="Nombre" labelPlacement="stacked" type="text"
+                placeholder='"Mi casa"'></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input [(ngModel)]="direction.state" label="Estado" labelPlacement="stacked" type="text" placeholder="Estado"></ion-input>
+              <ion-input [(ngModel)]="direction.state" label="Estado" labelPlacement="stacked" type="text"
+                placeholder="Estado"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input [(ngModel)]="direction.city" label="Ciudad" labelPlacement="stacked" type="text" placeholder="Ciudad"></ion-input>
+              <ion-input [(ngModel)]="direction.city" label="Ciudad" labelPlacement="stacked" type="text"
+                placeholder="Ciudad"></ion-input>
             </ion-item>
             <ion-item>
               <ion-input [(ngModel)]="direction.postal_code" label="Código postal" labelPlacement="stacked" type="text"
@@ -165,7 +172,8 @@
                 placeholder="Calle y número"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-input [(ngModel)]="direction.description" label="Referenciais" labelPlacement="stacked" type="text" placeholder="Referencias"></ion-input>
+              <ion-input [(ngModel)]="direction.description" label="Referencias" labelPlacement="stacked" type="text"
+                placeholder="Referencias"></ion-input>
             </ion-item>
           </ion-content>
         </ng-template>

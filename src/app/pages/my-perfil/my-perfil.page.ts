@@ -5,6 +5,7 @@ import { Direction } from 'src/app/interfaces/direction';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { IonModal } from '@ionic/angular';
 import { DirectionsService } from 'src/app/services/directions/directions.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   standalone: false,
@@ -21,6 +22,7 @@ export class MyPerfilPage implements OnInit {
   protected userId: string = localStorage.getItem('user_id') || "";
 
   direction: Direction = {
+    id: "",
     user_id: this.userId,
     state: "",
     city: "",
@@ -30,7 +32,7 @@ export class MyPerfilPage implements OnInit {
     description: "",
   };
 
-  constructor(crud: UserService, directions: DirectionsService) {
+  constructor(crud: UserService, directions: DirectionsService, private alertController: AlertController) {
     this.crud = crud;
     this.directions = directions;
   }
@@ -60,6 +62,51 @@ export class MyPerfilPage implements OnInit {
 
   setDirections() {
     this.directions.setDirections(this.direction).subscribe();
+  }
+
+  editDirection(selectedDirection: Direction) {
+    this.direction = { ...selectedDirection };
+    this.editarModal.present();
+  }
+  
+  updateDirection(modal: IonModal) {
+    this.directions.updateDirections(this.direction.id, this.direction).subscribe(
+      (response) => {
+        console.log('Dirección actualizada:', response);
+        this.getUser();
+        modal.dismiss();
+      },
+      (error) => console.error('Error al actualizar dirección:', error)
+    );
+  }
+  
+  deleteDirection(id: string) {
+    this.directions.deleteDirections(id).subscribe(
+      () => {
+        console.log('Dirección eliminada');
+        this.getUser();
+      },
+      (error) => console.error('Error al eliminar dirección:', error)
+    );
+  }
+  
+  async presentDeleteAlert(directionId: string) {
+    const alert = await this.alertController.create({
+      header: 'Eliminar',
+      message: '¿Estás seguro de que deseas eliminar esta dirección?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        },
+        {
+          text: 'Eliminar',
+          handler: () => this.deleteDirection(directionId)
+        }
+      ]
+    });
+  
+    await alert.present();
   }
 
   // ? SECCIÓN DE EDITAR DIRECCIÓN
