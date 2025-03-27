@@ -61,7 +61,11 @@ const routes: Routes = [
   {
     path: 'auth/callback',
     loadChildren: () => import('./pages/google-callback/google-callback.module').then(m => m.GoogleCallbackPageModule)
+  },  {
+    path: 'sensor',
+    loadChildren: () => import('./pages/sensor/sensor.module').then( m => m.SensorPageModule)
   }
+
   
    //{path:'**', component:NoFoundComponent}
 
