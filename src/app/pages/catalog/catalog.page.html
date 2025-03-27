@@ -22,11 +22,12 @@
     </ion-refresher>
 
     <img *ngIf="productsList.length === 0" src="assets/images/empty-view.png" class="full-image" />
+    <p  *ngIf="productsList.length === 0"  >Puedes delizar hacia abajo para actualizar. </p>
 
     <ion-list *ngIf="productsList.length > 0">
       <ion-item *ngFor="let product of productsList" class="ion-activatable ripple-parent rectangle">
         <ion-avatar class="product">
-          <ion-img class="img-slide" [src]="'assets/images/empty-image.png'" />
+          <ion-img class="img-slide" src="{{product.image[0]}}" />
         </ion-avatar>
         <ion-label>
           <h1>{{product.name}}</h1>

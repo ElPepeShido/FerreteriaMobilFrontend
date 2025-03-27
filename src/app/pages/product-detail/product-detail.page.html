@@ -18,15 +18,14 @@
 
 
       <swiper-container>
-        <swiper-slide *ngIf="product?.image?.length; else emptyImage">
-          <!-- <img class="img-slide" *ngFor="let img of product.image" [src]="img" alt="avatar" /> -->
-          <img class="img-slide" [src]="'assets/images/empty-image.jpeg'" alt="avatar" />
+        <swiper-slide *ngFor="let image of product.image">
+          <img class="img-slide" src="{{image}}" alt="avatar" />
         </swiper-slide>
-        <ng-template #emptyImage>
+        <ng-container *ngIf="product.image.length === 0">
           <swiper-slide>
             <img class="img-slide" src="assets/images/empty-image.jpeg" alt="avatar" />
           </swiper-slide>
-        </ng-template>
+        </ng-container>
       </swiper-container>
   
     
