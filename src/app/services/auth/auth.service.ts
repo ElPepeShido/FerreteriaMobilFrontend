@@ -9,6 +9,7 @@ import { TokenService } from '../token/token.service';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
 
    private readonly url = environment.apiUrl;
@@ -25,5 +26,18 @@ export class AuthService {
 
   logout(): Observable<any> {
     return this.http.post(`${this.url}/logout`,{});
+  }
+
+  loginWithGoogle(): void {
+    window.location.href = `${this.url}/auth/google`;  // 🔹 Esto redirige primero a Google
+  }
+
+  handleGoogleResponse(response: any): void {
+    const { user, token } = response;
+  
+    if (user && token) {
+      this.tokenService.setToken(token, user.id);
+      console.log('Usuario autenticado:', user);
+    }
   }
 }

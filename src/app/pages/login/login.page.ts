@@ -57,4 +57,8 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {}
+
+  loginWithGoogle(): void {
+    this.authService.loginWithGoogle();
+  }
 }

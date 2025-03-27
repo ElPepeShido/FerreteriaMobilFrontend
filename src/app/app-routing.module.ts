@@ -54,10 +54,14 @@ const routes: Routes = [
     loadChildren: () => import('./pages/order-detail/order-detail.module').then( m => m.OrderDetailPageModule),
     canActivate: [isUserAuthenticatedGuard]
   },
-
-
-
-
+  {
+    path: 'google-callback',
+    loadChildren: () => import('./pages/google-callback/google-callback.module').then( m => m.GoogleCallbackPageModule)
+  },
+  {
+    path: 'auth/callback',
+    loadChildren: () => import('./pages/google-callback/google-callback.module').then(m => m.GoogleCallbackPageModule)
+  }
   
    //{path:'**', component:NoFoundComponent}
 

@@ -7,7 +7,7 @@
     <ion-input [(ngModel)]="user.password" class="mi-input" type="password" fill="solid" label="Contraseña" labelPlacement="floating"
       helperText="Ingrese su contraseña" errorText="Contraseña no posible" ngModel password></ion-input>
     <ion-button type="submit" (click)="login()" class="inicia-sesion">Iniciar Sesión</ion-button>
-    <ion-button class="google"> <!-- TODO: AGREGAR FUNCION QUE LLAME AL ENDPOINT DE AUTH CON GOOGLE-->
+    <ion-button  (click)="loginWithGoogle()" class="google"> <!-- TODO: AGREGAR FUNCION QUE LLAME AL ENDPOINT DE AUTH CON GOOGLE-->
       <ion-icon name="logo-google"></ion-icon>
       Ingresar con google
     </ion-button> 
