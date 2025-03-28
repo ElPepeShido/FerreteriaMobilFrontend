@@ -5,6 +5,8 @@ import { UserRegister } from 'src/app/interfaces/user-register';
 import { AuthCredentials } from 'src/app/interfaces/auth-credentials';
 import { environment } from "src/environments/environment";
 import { TokenService } from '../token/token.service';
+// import { Plugins } from '@capacitor/core';
+// import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +14,9 @@ import { TokenService } from '../token/token.service';
 
 export class AuthService {
 
-   private readonly url = environment.apiUrl;
+  private readonly url = environment.apiUrl;
 
-  constructor(private http: HttpClient,private tokenService:TokenService) { }
+  constructor(private http: HttpClient, private tokenService: TokenService) { }
 
   login(credentials: AuthCredentials): Observable<any> {
     return this.http.post(`${this.url}/login`, credentials);
@@ -25,19 +27,30 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    return this.http.post(`${this.url}/logout`,{});
+    return this.http.post(`${this.url}/logout`, {});
   }
 
-  loginWithGoogle(): void {
-    window.location.href = `${this.url}/auth/google`;  // 🔹 Esto redirige primero a Google
-  }
+  // loginWithGoogle(): void {
+  //   window.location.href = `${this.url}/auth/google`;  // 🔹 Esto redirige primero a Google
+  // }
 
-  handleGoogleResponse(response: any): void {
-    const { user, token } = response;
-  
-    if (user && token) {
-      this.tokenService.setToken(token, user.id);
-      console.log('Usuario autenticado:', user);
-    }
-  }
+  // handleGoogleResponse(response: any): void {
+  //   const { user, token } = response;
+
+  //   if (user && token) {
+  //     this.tokenService.setToken(token, user.id);
+  //     console.log('Usuario autenticado:', user);
+  //   }
+  // }
+
+  // GoogleAuth.initialize(); // Inicializa el plugin
+
+  // async loginWithGoogle() {
+  //   try {
+  //     const googleUser = await GoogleAuth.signIn();
+  //     console.log('Usuario:', googleUser);
+  //   } catch (error) {
+  //     console.error('Error en login:', error);
+  //   }
+  // }
 }
