@@ -1,0 +1,161 @@
+ion-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    --ion-background-color: #333333;
+}
+
+ion-toolbar{
+    text-align: center;
+}
+
+ion-input {
+    margin: auto;
+    margin-bottom: 20px;
+    width: 320px;
+}
+
+.perfil-img {
+    margin-bottom: 20px;
+    width: 120px;
+    height: 120px;
+}
+
+ion-card {
+    padding: 10px;
+    width: 340px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    --ion-background-color: #ffffff;
+}
+
+
+.crea-cuenta {
+    --background: #f77f00;
+    margin: 20px auto;  
+    display: block;      
+    text-align: center;
+}
+
+
+ion-toast {
+    --background: red;
+    --color: #ffffff;
+    text-align: center;
+}
+
+.avatar-container {
+    position: relative;
+    display: inline-block;
+}
+
+.fab-over-avatar {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: translate(50%, 50%);
+    z-index: 10;
+}
+
+.image-input {
+    display: none;
+}
+
+.custom-file-upload {
+    background: var(--ion-color-primary, #3880ff);
+    color: white;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+}
+
+.custom-file-upload:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+
+
+ion-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    --ion-background-color: #ffffff;
+    // padding: 10px;
+}
+
+ion-toolbar{
+    text-align: center;
+    --ion-background-color: #15207e;
+    --color:#eeeeee;
+}
+
+ion-avatar {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+h2{
+    color: #2ecc71 ;
+    font-weight: 700;
+}
+
+ion-button.grande{
+    width: 80%;
+    --ion-background:#eeeeee;
+    --border-radius: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ion-item{
+    margin-left: 0;
+}
+
+.product{
+    width: 100px;
+    height: 100px;
+}
+
+.icono-menu{
+    margin-right: 10px;
+}
+
+.menu-toolbar{
+    --ion-background-color: #f77f00;
+}
+
+.menu-toolbar ion-title
+{
+    --color:#333333;
+}
+
+.settings-btn{
+    --ion-background: gray;
+}
+
+ion-list{
+    width: 100%;
+}
+
+ion-card-content{
+    font-size: 20px;
+}

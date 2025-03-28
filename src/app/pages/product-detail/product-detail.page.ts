@@ -5,6 +5,7 @@ import { ProductsService } from 'src/app/services/productos/products.service';
 import { Product } from 'src/app/interfaces/product';
 import { CartService } from 'src/app/services/cart/cart.service';
 import { ToastController } from '@ionic/angular';
+import { ToastService } from 'src/app/services/toast/toast.service';
 
 register();
 @Component({
@@ -32,7 +33,7 @@ export class ProductDetailPage implements OnInit {
     private route: ActivatedRoute,
     private productService: ProductsService,
     private crudCart: CartService,
-    private toastController: ToastController,
+    private toastController: ToastService,
   ) {}
   ngOnInit() {
     const productId = localStorage.getItem('product_id');
@@ -69,12 +70,12 @@ export class ProductDetailPage implements OnInit {
     this.crudCart.addToCart(cartproduct).subscribe({
       next: async (response) => {
         if (response) {  
-          this.showToast('Producto agregado al carrito con éxito', 'success');
+          this.toastController.showToast('Producto agregado al carrito con éxito', 'success');
         }
       },
       error: async (error) => {
         console.error(error);
-        this.showToast('Error al agregar al carrito', 'danger');
+        this.toastController.showToast('Error al agregar al carrito', 'danger');
       },
       complete: () => {
         console.log('La acción se completó correctamente');
@@ -82,15 +83,7 @@ export class ProductDetailPage implements OnInit {
     });
   }
 
-  private async showToast(message: string, color: string) {
-    const toast = await this.toastController.create({
-      message,
-      duration: 2000,  
-      position: 'top',
-      color
-    });
-    await toast.present();
-  }
+
 
 
 }

@@ -8,7 +8,8 @@ import { environment } from "src/environments/environment";
   providedIn: 'root'
 })
 export class UserService {
-  private readonly url = environment.apiUrl;
+  private readonly  url = environment.apiUrl;
+  private readonly  UserID = localStorage.getItem('user_id');
 
   constructor(private http: HttpClient) { }
 
@@ -33,7 +34,14 @@ export class UserService {
 
   // Método actualizado para responder con userResponse
   getAuthenticatedUser(): Observable<userResponse> {
-    const UserID = localStorage.getItem('user_id');
-    return this.http.get<userResponse>(`${this.url}/user/${UserID}`); 
+    console.log('id guardado en storge: '+ this.UserID);
+    return this.http.get<userResponse>(`${this.url}/user/${this.UserID}`); 
+  }
+  updateUser(user: User, formData:FormData ): Observable<any>{
+    formData.forEach((value, key) => {
+      console.log('data enviada: ');
+      console.log(key, value);
+    });
+    return this.http.put<any>(`${this.url}/user/${this.UserID}`, formData);
   }
 }

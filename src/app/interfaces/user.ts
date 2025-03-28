@@ -13,5 +13,5 @@ export interface User {
 
 export interface userResponse{
     message: string,
-    user: User,
+    data: User,
 }

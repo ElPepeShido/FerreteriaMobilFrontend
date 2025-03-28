@@ -22,6 +22,7 @@
     </ion-refresher>
 
     <img *ngIf="productsList.length === 0" src="assets/images/empty-view.png" class="full-image" />
+    <p  *ngIf="productsList.length === 0"  >Puedes delizar hacia abajo para actualizar. </p>
 
     <ion-list *ngIf="productsList.length > 0">
       <ion-item *ngFor="let product of productsList" class="ion-activatable ripple-parent rectangle">

@@ -5,6 +5,7 @@ import { UserService } from 'src/app/services/user/user.service';
 import { User } from 'src/app/interfaces/user';
 import { Product } from 'src/app/interfaces/product';
 import { LoadingController } from '@ionic/angular';
+import { LoadingService } from 'src/app/services/Loading/loading.service';
 
 @Component({
   standalone: false,
@@ -22,25 +23,16 @@ export class CatalogPage implements OnInit {
     private api: ProductsService,
     private router: Router,
     private crudUser: UserService,
-    private loadingCtrl: LoadingController) {
+    private loadingCtrl: LoadingService,
+  ) {
     this.crudUser = crudUser;
   }
 
   async ngOnInit() {
-    await this.presentLoading();
+    await this.loadingCtrl.presentLoading();
     this.getProducts();
   }
 
-  async presentLoading() {
-    this.loading = await this.loadingCtrl.create({
-      message: 'Cargando productos...',
-      spinner: 'circular',
-      translucent: true,
-      keyboardClose: true,
-      cssClass: 'custom-loading'
-    });
-    await this.loading.present();
-  }
   async getProducts() {
     this.api.getProducts().subscribe({
       next: async (response) => {
@@ -48,19 +40,14 @@ export class CatalogPage implements OnInit {
       },
       error: async (error) => {
         console.error('Error al obtener los productos:', error);
+        this.loadingCtrl.dismissLoading();
       },
       complete: () => {
-        this.dismissLoading();
+        this.loadingCtrl.dismissLoading();
       }
     })
   }
 
-  private async dismissLoading() {
-    if (this.loading) {
-      await this.loading.dismiss(); // Asegurarse de llamar dismiss() correctamente
-      this.loading = null; // Resetear la variable
-    }
-  }
 
   // async getCurrentUser() {
   //   this.crudUser.getAuthenticatedUser().subscribe({
