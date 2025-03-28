@@ -1,0 +1,68 @@
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Sensores</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">Sensores</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+
+    <ion-card>
+      <img alt="Silhouette of mountains" src="/assets/images/habitación.jpg" />
+      <ion-card-header>
+        <ion-card-title>Luminocidad del local:</ion-card-title>
+        <ion-card-subtitle>Sensor de Luz</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content *ngFor="let sensor of sensores">
+        {{ sensor.lux }}
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <img alt="Silhouette of mountains" src="/assets/images/cemento.png" />
+      <ion-card-header>
+        <ion-card-title>Humedad de los costales de cemento:</ion-card-title>
+        <ion-card-subtitle>Sensor de humedad</ion-card-subtitle>
+      </ion-card-header >
+        
+      <ion-card-content *ngFor="let sensor of sensores">
+        {{ sensor.humity }}
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <img alt="Silhouette of mountains" src="/assets/images/gas.png" />
+      <ion-card-header>
+        <ion-card-title>Gases en los tanques:</ion-card-title>
+        <ion-card-subtitle>Sensor de gas</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content *ngFor="let sensor of sensores">
+        {{ sensor.smoke }}
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <img alt="Silhouette of mountains" src="/assets/images/pintura.png" />
+      <ion-card-header>
+        <ion-card-title>Temperatura de las pinturas:</ion-card-title>
+        <ion-card-subtitle>Sensor de pintura</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content *ngFor="let sensor of sensores">
+        {{ sensor.temp }}
+      </ion-card-content>
+    </ion-card>
+    <p *ngFor="let sensor of sensores">Actualizado: {{ sensor.updated_at | date:'medium' }}</p>
+  </ion-content>
+</div>

@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/services/user/user.service';
 import { User, userResponse } from 'src/app/interfaces/user';
 import { Direction } from 'src/app/interfaces/direction';
+import { Cart} from 'src/app/interfaces/cartResponse';
+import { CartService } from 'src/app/services/cart/cart.service';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { IonModal } from '@ionic/angular';
 import { DirectionsService } from 'src/app/services/directions/directions.service';
@@ -14,6 +16,7 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./my-perfil.page.scss'],
 })
 export class MyPerfilPage implements OnInit {
+  cart: Cart = {} as Cart;
   private crud: UserService;
   private directions: DirectionsService;
   protected User: User = {} as User;
@@ -32,13 +35,14 @@ export class MyPerfilPage implements OnInit {
     description: "",
   };
 
-  constructor(crud: UserService, directions: DirectionsService, private alertController: AlertController) {
+  constructor(private apicart:CartService, crud: UserService, directions: DirectionsService, private alertController: AlertController) {
     this.crud = crud;
     this.directions = directions;
   }
 
   ngOnInit() {
     this.getUser();
+    this.getUserCart();
   }
 
   getUser() {
@@ -157,4 +161,21 @@ export class MyPerfilPage implements OnInit {
   }
 
   // ! FIN SECCIÓN DEL ALERT PARA ELIMINAR LA DIRECCIÓN
+
+
+  private getUserCart(){
+    const userId = `${localStorage.getItem('user_id')}`;
+    this.apicart.getUserCart(userId).subscribe({
+      next: (response) => {
+        console.log('Carrito del usuario:', response);
+        this.cart = response.data[0];
+      },
+      error: (error) => {
+        console.error('Error al obtener el carrito:', error);
+      },
+      complete: () => {
+        console.log('La acción se completó correctamente');
+      }
+    });
+  }
 }

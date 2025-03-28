@@ -2,9 +2,9 @@
   <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
-        <ion-menu-button menu="main-menu"></ion-menu-button>
+        <ion-menu-button></ion-menu-button>
       </ion-buttons>
-      <ion-title>Detalles del producto</ion-title>
+      <ion-title>Producto</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -12,22 +12,23 @@
     
     <ion-header collapse="condense">
       <ion-toolbar>
-        <ion-title size="large">Detalles del producto</ion-title>
+        <ion-title size="large">Producto</ion-title>
       </ion-toolbar>
     </ion-header>
 
 
-      <swiper-container>
-        <swiper-slide *ngIf="product?.image?.length; else emptyImage">
-          <!-- <img class="img-slide" *ngFor="let img of product.image" [src]="img" alt="avatar" /> -->
-          <img class="img-slide" [src]="'assets/images/empty-image.jpeg'" alt="avatar" />
+    <swiper-container>
+      <ng-container *ngIf="product?.image?.length; else emptyImage">
+        <swiper-slide *ngFor="let img of product.image">
+          <img class="img-slide" [src]="img" alt="avatar" />
         </swiper-slide>
-        <ng-template #emptyImage>
-          <swiper-slide>
-            <img class="img-slide" src="assets/images/empty-image.jpeg" alt="avatar" />
-          </swiper-slide>
-        </ng-template>
-      </swiper-container>
+      </ng-container>
+      <ng-template #emptyImage>
+        <swiper-slide>
+          <img class="img-slide" src="/assets/images/empty-image.jpeg" alt="avatar" />
+        </swiper-slide>
+      </ng-template>
+    </swiper-container>
   
     
     <ion-card>

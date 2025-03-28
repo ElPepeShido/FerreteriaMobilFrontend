@@ -26,7 +26,8 @@
     <ion-list *ngIf="productsList.length > 0">
       <ion-item *ngFor="let product of productsList" class="ion-activatable ripple-parent rectangle">
         <ion-avatar class="product">
-          <ion-img class="img-slide" [src]="'assets/images/empty-image.png'" />
+          <!--assets/images/empty-image.png-->
+          <ion-img class="img-slide" [src]="'{{product.image[0]}}'" />
         </ion-avatar>
         <ion-label>
           <h1>{{product.name}}</h1>

@@ -20,3 +20,9 @@ export interface ProductDeleteResponse{
       status:string;
       message: string;
 }
+
+export interface CartResponse {
+      status: string;
+      data: Cart[] | number;
+      number_of_products?: number;
+}

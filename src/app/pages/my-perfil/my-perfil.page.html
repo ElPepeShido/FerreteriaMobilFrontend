@@ -17,7 +17,7 @@
 
     <ion-card>
       <ion-avatar class="perfil-img">
-        <img alt="Silhouette of a person's head" [src]="User.image" />
+        <img alt="foto" [src]="User.image" />
       </ion-avatar>
       <ion-title>{{User.name}}</ion-title>
     </ion-card>
@@ -36,7 +36,7 @@
           <ion-label>Productos en el carrito</ion-label>
           <ion-button color="warning" class="button-info" slot="end">
             <ion-icon name="cart-outline" slot="start"></ion-icon>
-            13
+            <!-- {{ number_of_products }} -->
           </ion-button>
         </ion-item>
         <ion-item>
